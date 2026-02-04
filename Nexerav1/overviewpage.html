@@ -1,0 +1,1759 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/png" href="images/nexera_icon.png" />
+   <title>Nexera — Empowering Educators with AI & XR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root{
+      --primary-blue: #5B7CE6;
+      --dark-blue: #4A63C1;
+      --light-blue: #EEF2FF;
+      --accent-yellow: #FFC107;
+      --accent-orange: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      --text-dark: #1a1a2e;
+      --text-gray: #666666;
+      --border-color: #E5E5E5;
+      --white: #FFFFFF;
+    }
+    body{
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: #F9FAFB;
+    }
+
+
+
+    .back-nav { background: var(--white); border-bottom: 1px solid var(--border-color); padding: 16px 5px; }
+    .back-nav .container { max-width: 1000px; margin: 0 auto; }
+    .back-btn { background: transparent; border: none; color: var(--primary-blue); font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .back-btn:hover { color: var(--dark-blue); }
+    .course-header { background: var(--white); padding: 40px 20px; }
+    .header-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .header-left, .header-right { display: flex; flex-direction: column; }
+    .header-content h1 { font-size: 38px; font-weight: 700; margin-bottom: 20px; color: var(--text-dark); line-height: 1.3; }
+    .stats-share { display: flex; flex-direction: column; gap: 16px; }
+    .course-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .stat { text-align: center; padding: 16px; background: var(--light-blue); border-radius: 8px; }
+    .stat-value { font-size: 18px; font-weight: 700; color: var(--text-dark); display:flex; align-items:center; justify-content:center; gap:4px; margin-bottom:4px; }
+    .star { color: var(--accent-yellow); }
+    .stat-label { font-size: 13px; color: var(--text-gray); }
+    .btn-enroll, .btn-certificate {
+      width: 100%;
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn-enroll{
+        margin-top: 23px;
+          padding: 18px;
+    }
+    .btn-enroll:hover, .btn-certificate:hover { background: var(--dark-blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(91, 124, 230, 0.3); }
+    .linkedin-icon { width:24px; height:24px; background:var(--primary-blue); color:#fff; display:flex; justify-content:center; align-items:center; border-radius:50%; font-size:14px; border: 2px solid white; padding: 10px; }
+    /* Video section */
+    .video-section { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; height: 250px; padding-bottom: -500px;}
+    .video-wrapper { position: relative; aspect-ratio: 16 / 9; width:100%; border-radius: 12px; overflow: hidden; }
+    .video-wrapper .media { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-placeholder { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; background: linear-gradient(135deg, var(--primary-blue) 0%, #7B93E8 100%); }
+    .video-placeholder i { font-size: 64px; margin-bottom: 16px; opacity: 0.9; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 5px 20px; background-color:white !important;}
+    .content-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; margin-bottom:40px; }
+    .content-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 24px; color: var(--text-dark); }
+    .learning-items { display: grid; gap: 16px; }
+    .learning-item { display:flex; gap:12px; font-size:15px; color:var(--text-dark); line-height:1.6; }
+    .checkmark { color: var(--primary-blue); font-weight:700; flex-shrink:0; font-size:18px; }
+    /* Course description toggle */
+    #toggleDesc { margin-top:10px; background:none; border:none; color:var(--primary-blue); cursor:pointer; font-weight:600; }
+    /* Lessons section */
+    .lessons-section { margin-bottom:40px; }
+    .lessons-list { display:grid; gap:12px; }
+    .lesson-item { background:#fff; border:1px solid var(--border-color); padding:12px 16px; border-radius:8px; }
+    /* Resources section */
+    .resources-section { margin-top: 60px; margin-bottom: 50px; }
+    .resources-section .section-title { font-size: 24px; font-weight: 700; margin-bottom: 25px; text-align: center; color: var(--text-dark); }
+    .resources-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .resource-card { background: #ffffff; border: 1px solid #ddd; border-radius: 12px; display: flex; align-items: center; gap: 16px; padding: 20px 28px; flex: 1 1 320px; min-width: 280px; max-width: 480px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    .resource-card:hover { box-shadow: 0 6px 18px rgba(91, 124, 230, 0.15); transform: translateY(-4px); }
+    .resource-icon { font-size: 32px; color: var(--primary-blue); }
+    .resource-text h3 { font-size: 18px; color: #333; margin: 0 0 6px; }
+    .resource-text p { font-size: 14px; color: #555; margin: 0; }
+    /* Demo Video */
+    .demo-video { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+    .demo-video h3 { padding: 24px 32px; font-size:22px; font-weight:600; color:var(--text-dark); border-bottom:1px solid var(--border-color); }
+    .demo-video .video-wrapper { aspect-ratio: 16 / 9; position:relative; overflow:hidden; }
+    .demo-video .media { width:100%; height:100%; object-fit:cover; }
+    /* CTA */
+    .cta-section { background: var(--white); border: 1px solid var(--border-color); border-radius:12px; padding:48px; text-align:center; margin-bottom:40px; }
+    .cta-section h2 { font-size:28px; font-weight:700; margin-bottom:16px; color:var(--text-dark); }
+    .cta-section p { font-size:16px; color:var(--text-gray); margin-bottom:28px; max-width:600px; margin-left:auto; margin-right:auto; }
+    .btn-register { padding:16px 48px; background: var(--accent-orange); border:none; border-radius:8px; color:var(--text-dark); font-size:18px; font-weight:600; cursor:pointer; box-shadow:0 4px 20px rgba(255,193,7,0.4); }
+    .btn-register:hover { transform: translateY(-2px); box-shadow:0 6px 24px rgba(255,193,7,0.5); }
+    @media (max-width:968px) {
+      .header-container { grid-template-columns: 1fr; }
+      .header-content h1 { font-size: 28px; }
+    }
+
+
+    /* LOCKED CSS */
+
+    /* --- Locked Page Overlay --- */
+#courseLockedOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.75); /* dark transparent */
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* When active */
+#courseLockedOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+ @media (max-width: 480px) {
+  .demo-video{
+    display: none;
+  }
+ }
+
+ #courseLockedOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #courseLockedOverlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+        .video-section { 
+  height: 330px; 
+  margin-bottom: 16px; 
+}
+
+.btn-enroll {
+  margin-top: 0;
+  padding: 18px;
+}
+.course-description-text{
+  margin-top: -20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* text-align: center; */
+}
+
+/* Just Testing */
+
+#lockOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(240,240,240,0.95); /* light grey */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#lockOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lock-box {
+  background: white;
+  padding: 40px 60px;
+  border-radius: 16px;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.lock-box span {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .lock-box {
+    width: 80%;
+    padding: 30px;
+    font-size: 22px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <div id="navigation-placeholder"></div>
+  <!-- BACK NAVIGATION -->
+  <div class="back-nav">
+    <div class="container">
+      <button class="back-btn" onclick="window.history.back()">← Back to courses</button>
+    </div>
+  </div>
+    <div id="courseLockedOverlay">LOCKED</div>
+  <!-- COURSE HEADER -->
+  <section class="course-header">
+    <div class="header-container">
+      <!-- LEFT: Stats + Certificate -->
+      <div class="header-left stats-share header-content">
+        <h1 id="courseTitle">Course</h1>
+         <p class="course-description-text" id="headerDescription">Description Text</p>
+         <button class="btn-certificate">
+          <div class="linkedin-icon"><i class="fab fa-linkedin-in"></i></div>
+          Shareable Certificate
+        </button>
+        <div class="course-stats" id="courseStats">
+          <div class="stat">
+            <div class="stat-value" id="statLevel">Beginner</div>
+            <div class="stat-label">Recommended level</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statTime">2 days</div>
+            <div class="stat-label">To complete</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statFlex">Flexible</div>
+            <div class="stat-label">Schedule</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statCaps">Curriculum Aligned</div>
+            <div class="stat-label">CAPS</div>
+          </div>
+        </div>
+       
+      </div>
+      <!-- RIGHT: Video + Start Experience -->
+      <div class="header-right">
+        <div class="video-section">
+          <div class="video-wrapper" id="mainMediaWrap">
+            <div class="video-placeholder" id="mainVideoPlaceholder">
+              <i class="fas fa-play-circle"></i>
+              <span>Course Introduction Video</span>
+            </div>
+          </div>
+        </div>
+        <a href="persona.html" style="text-decoration:none;"><button class="btn-enroll" id="enrollBtn startExperience" style="margin-bottom: -500px !important;">Start Experience</button></a>
+        <a href="persona.html" id="startExperience" class="btn-enroll" style="text-decoration:none; margin-bottom:-500px; display:inline-block; text-align: center;">
+  Start Experience
+</a>
+      </div>
+    </div>
+  </section>
+  <!-- COURSE CONTENT -->
+  <div class="container">
+    <!-- Course Description -->
+    <div class="content-card course-description">
+      <h2>What you will Learn</h2>
+      <p id="courseDescription"></p>
+      <button id="toggleDesc">Read more</button>
+    </div>
+    <!-- Skills you will gain -->
+    <div class="content-card">
+      <h2>Skills you will gain</h2>
+      <div class="learning-items" id="skillsItems"></div>
+    </div>
+ 
+    <!-- Lessons -->
+    <div class="lessons-section container">
+      <h2>Lessons</h2>
+      <div class="lessons-list" id="lessonsList"></div>
+    </div>
+       <!-- Explore Topics -->
+    <div class="content-card">
+      <h2>Explore Topics</h2>
+      <div id="exploreTopics" style="display:flex; flex-wrap:wrap; gap:16px;"></div>
+    </div>
+    <!-- Resources -->
+    <section class="resources-section">
+      <h2 class="section-title">Resources</h2>
+      <div class="resources-container" id="resourcesContainer"></div>
+    </section>
+    <!-- Demo -->
+    <div class="demo-video" id="demoSection">
+      <h3>See a Demo of Interactive AR Experience</h3>
+      <div class="video-wrapper" id="demoVideoWrap"></div>
+    </div>
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Would you like to create experiences like this?</h2>
+      <p>Join thousands of educators transforming their teaching with immersive 3D/AR technology. No coding skills required!</p>
+      <button class="btn-register" onclick="window.location.href='index.html'">Register for free</button>
+    </div>
+  </div>
+  <!-- Page Lock Overlay -->
+<div id="lockOverlay">
+  <div class="lock-box">
+    🔒 Locked<br><span>This experience is currently unavailable</span>
+  </div>
+</div>
+
+  <div id="footer-placeholder"></div>
+  <script>
+
+    const coursesData = {
+  1: {
+    id: 1,
+    locked: true,  // ⛔ LOCKED
+    title: "Animal Production",
+    header:"Plant Production Text",
+    level: "Beginner",
+    time: "2 days",
+
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/GoatSkeleton.mp4" },
+    description: "Learn the essentials of livestock care, feeding, and farm safety.",
+    skills: ["Animal Husbandry", "Feeding Schedules", "Livestock Management", "Farm Safety"],
+    learning: ["Animal husbandry basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Introduction to Livestock", "Feeding Basics", "Animal Health Checks", "Safety Protocols"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/GoatSkeleton.mp4" }
+  },
+    2: {
+    id: 2,
+    title: "Plant Production",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/PlantReproduction.mp4" },
+    description: "Learn the essentials of plant reproduction.",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/PlantReproduction.mp4" }
+  },
+
+    3: {
+    id: 3,
+    title: "Soil Science",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Soil_Science.mp4" },
+    description: "Learn Soil Science in 3D/Ar.",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Soil_Science.mp4" }
+  },
+
+    4: {
+    id: 4,
+    title: "Carpentry & Roofwork",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/RoofBracingandReinforcement.mp4" },
+    description: "Learn Carpentry & Roofwork in 3D/Ar..",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/RoofBracingandReinforcement.mp4" }
+  },
+
+    5: {
+    id: 5,
+    title: "Concrete Structures",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/RoofConstruction.mp4" },
+    description: "Build a strong foundation with formwork, pressure, and structural",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/RoofConstruction.mp4" }
+  },
+
+     6: {
+    id: 6,
+    title: "Construction Planning",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/MeasuringSettingOut&Levellinganimation.mp4" },
+    description: "Learn planning, design, and execution of construction projects.",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/MeasuringSettingOut&Levellinganimation.mp4" }
+  },
+
+     7: {
+    id: 7,
+    title: "Masonry",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/MeasuringSettingOut&Levellinganimation.mp4" },
+    description: "Master the art of masonry from basics to advanced.",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/MeasuringSettingOut&Levellinganimation.mp4" }
+  },
+
+      8: {
+    id: 8,
+    title: "Drone Basics",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Drone_Basics.mp4" },
+    description: "Learn how to fly a drone in Ar",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Drone_Basics.mp4" }
+  },
+
+     9: {
+    id: 9,
+    title: "Wiring & Circuit Systems",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Wiring__Circuit_Systems.mp4" },
+    description: "This course introduces learners to the fundamentals of electrical wiring and circuit systems, including design, installation, testing, and maintenance. Students will gain hands-on knowledge of safe electrical practices, circuit components, and troubleshooting techniques used in residential, commercial, and industrial settings.",
+    skills: ["Ability to design, install, and maintain electrical circuits safely.", "Competence in using electrical tools, measuring devices, and testing equipment.", "Knowledge of identifying faults, troubleshooting circuits, and applying safety standards."],
+    learning: ["Basic electrical theory: voltage, current, resistance, and power.", "Wiring methods for residential, commercial, and industrial applications."],
+    topics: ["Electrical installation and maintenance", "Electrical safety and OHS", "Circuit design and load calculations"],
+    lessons: ["Introduction to Electrical Theory and Circuit Components", "Wiring Methods and Installation Practices","Safety Procedures and Protective Equipment", "Testing, Troubleshooting, and Fault Rectification"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/wir-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/wir-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Wiring__Circuit_Systems.mp4" }
+  },
+
+        10: {
+    id: 10,
+    title: "Welding (ARC, MIG, TIG)",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Welding_ARC_MIG_TIG.mp4" },
+    description: "This course provides learners with comprehensive training in the three primary welding methods: ARC, MIG, and TIG. Students will gain practical skills in setup, operation, and safety while learning to produce high-quality welds on different metals for industrial, fabrication, and construction applications.",
+    skills: ["Competence in performing ARC, MIG, and TIG welding techniques.", "Ability to set up, operate, and maintain welding equipment safely.", "Knowledge of welding safety procedures, joint preparation, and quality inspection."],
+    learning: ["Overview of ARC, MIG, and TIG welding processes and applications.", "Equipment setup, electrode selection, and welding parameters.", "Welding joint types, positions, and techniques for various metals."],
+    topics: ["Industrial welding safety", "Fabrication techniques", "Metalworking and structural assembly"],
+    lessons: ["Introduction to ARC, MIG, and TIG Welding Processes", "Equipment Setup, Joint Preparation, and Welding Parameters", "Welding Techniques, Positions, and Applications", "Safety, Quality Control, and Weld Inspection"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/wel-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/wel-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Welding_ARC_MIG_TIG.mp4" }
+  },
+
+      11: {
+    id: 11,
+    title: "Boilermaking",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Boilermaking.mp4" },
+    description: "This course provides learners with the knowledge and practical skills required to fabricate, assemble, and repair boilers, tanks, and pressure vessels. Students will learn techniques in metal cutting, forming, welding, and fitting, while adhering to safety standards and quality requirements.",
+    skills: ["Competence in fabricating and assembling boilers, tanks, and pressure vessels.", "Ability to use cutting, shaping, and welding techniques accurately.", "Knowledge of safety practices, inspection, and quality control in boilermaking operations."],
+    learning: ["Overview of boilermaking materials, components, and tools." , "Metal cutting, forming, and shaping techniques.", "Welding, joining, and fitting methods for boilers and tanks."],
+    topics: ["Fabrication techniques", "Welding fundamentals", "Industrial safety and OHS", "Pressure vessel standards and quality control"],
+    lessons: ["Introduction to Boilermaking and Materials", "Cutting, Shaping, and Forming Techniques", "Welding, Assembly, and Fitting Methods", "Safety, Inspection, and Quality Assurance"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/boil-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/boil-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Boilermaking.mp4" }
+  },
+
+        12: {
+    id: 12,
+    title: "Early Childhood Development",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Early_Childhood_.mp4" },
+    description: "Learn how to nurture and educate young learners.",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Early_Childhood_.mp4" }
+  },
+
+  
+        13: {
+    id: 13,
+    title: "Human and Social Development",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Video_Project_8.mp4" },
+    description: "Explore social structures and community development.",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Video_Project_8.mp4" }
+  },
+
+  
+        14: {
+    id: 14,
+    title: "Freight Logistics",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Freight_Logistics.mp4" },
+    description: "Explore frieight logitics in AR!",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Freight_Logistics.mp4" }
+  },
+        15: {
+    id: 15,
+    title: "Insurance Claims Administrator",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Claims_assessor.mp4" },
+    description: "Learn in AR!",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Claims_assessor.mp4" }
+  },
+
+      16: {
+    id: 16,
+    title: "Fabrication Layout",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Fabrication_Layout.mp4" },
+    description: "This course teaches learners how to plan, measure, and mark materials for fabrication projects. Students will gain practical skills in creating accurate layouts that guide cutting, forming, and assembly, ensuring precision, efficiency, and quality in metalworking and manufacturing.",
+    skills: ["Ability to interpret technical drawings and translate them into precise fabrication layouts.", "Competence in measuring, marking, and preparing materials for cutting and assembly.", "Knowledge of layout tools, templates, and best practices to ensure accuracy."],
+    learning: ["Reading engineering drawings, plans, and schematics."],
+    topics: ["Metal fabrication fundamentals", "Welding and joining techniques", "Quality control and inspection"],
+    lessons: ["Introduction to Fabrication Layout and Its Importance", "Reading Drawings and Translating Dimensions", "Measuring, Marking, and Using Layout Tools", "Preparing Materials for Cutting, Forming, and Assembly"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/fab-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/fab-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Fabrication_Layout.mp4" }
+  },
+
+        17: {
+    id: 17,
+    title: "Steel Structure Assembly",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Steel_Structure_Assembly.mp4" },
+    description: "This course provides learners with the knowledge and skills required to safely assemble steel structures in construction and industrial projects. Students will learn about structural components, assembly techniques, tools, and safety procedures to ensure strong, precise, and compliant construction.",
+    skills: ["Ability to read and interpret structural drawings and assembly plans.", "Competence in handling, aligning, and assembling steel components accurately.", "Knowledge of safety procedures, tools, and equipment used in steel construction."],
+    learning: ["Overview of steel structures, components, and connections.", "Tools and machinery used in steel assembly.", "Safety measures, PPE usage, and hazard prevention."],
+    topics: ["Structural engineering fundamentals", "Industrial welding and fabrication"],
+    lessons: ["Introduction to Steel Structures and Components", "Reading Drawings and Planning Assembly", "Assembly Techniques: Bolting, Welding, and Fitting", "Safety, Inspection, and Quality Assurance"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/steel-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/steel-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Steel_Structure_Assembly.mp4" }
+  },
+
+
+      18: {
+    id: 18,
+    title: "Welding Fundamentals",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Welding_Fundamentals.mp4" },
+    description: "This course provides learners with foundational knowledge and practical skills in welding, focusing on basic techniques, equipment handling, and safety. Students will gain an understanding of different welding processes and how to produce strong, precise welds in various industrial applications.",
+    skills: ["Ability to set up and operate basic welding equipment safely.", "Competence in performing fundamental welding techniques, including MIG, TIG, and arc welding.", "Knowledge of welding safety procedures, quality standards, and material preparation."],
+    learning: ["Welding joint types, positions, and basic techniques.", "Safety practices, personal protective equipment (PPE), and fire prevention."],
+    topics: ["Fabrication techniques", "Industrial welding safety"],
+    lessons: ["Introduction to Welding Processes and Equipment", "Welding Techniques: MIG, TIG, and Arc Basics", "Material Preparation, Joint Types, and Welding Positions", "Safety Practices, PPE, and Weld Quality Assessment"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/weld-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/weld-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Welding_Fundamentals.mp4" }
+  },
+
+
+       19: {
+    id: 19,
+    title: "Fabrication Techniques",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Fabrication_Techniques.mp4" },
+    description: "This course introduces learners to the fundamental techniques and processes used in metal fabrication and manufacturing. Students will learn how to measure, cut, shape, assemble, and finish metal components while adhering to quality standards and safety protocols.",
+    skills: ["Competence in basic metal fabrication processes such as cutting, bending, and welding.", "Ability to read technical drawings and translate them into fabricated components.", "Knowledge of safety practices, proper tool handling, and quality control."],
+    learning: ["Overview of fabrication processes: cutting, shearing, bending, forming, and welding.", "Safe handling of tools, machinery, and materials."],
+    topics: ["Industrial welding and safety", "Metalworking and machining"],
+    lessons: ["Introduction to Metal Fabrication & Tools", "Cutting, Bending, and Forming Techniques", "Assembly, Joining, and Finishing Processes", "Safety, Quality Control, and Inspection"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/fab-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/fab-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Fabrication_Techniques.mp4" }
+  },
+
+          20: {
+    id: 20,
+    title: "Industrial Welding Safety",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Industrial_Welding_Safety.mp4" },
+    description: "This course equips learners with the knowledge and practices necessary to work safely in welding environments. Students will learn about potential hazards, protective measures, and safety protocols to prevent injuries while performing welding, cutting, and related operations in industrial settings.",
+    skills: ["Ability to identify and mitigate hazards associated with welding operations.", "Competence in using personal protective equipment (PPE) and safety tools correctly.", "Knowledge of safe welding procedures, fire prevention, and emergency response."],
+    learning: ["Common welding hazards: burns, sparks, fumes, electric shock, and UV exposure.", "Selection and proper use of PPE (helmets, gloves, aprons, respirators).", "Safe handling of welding equipment, gases, and consumables."],
+    topics: ["Occupational health and safety (OHS)", "Industrial fire safety"],
+    lessons: ["Introduction to Welding Hazards and Safety Principles", "Personal Protective Equipment (PPE) and Safe Work Practices", "Safe Handling of Welding Equipment and Consumables", "Fire Prevention, Emergency Response, and Incident Reporting"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/indutries-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/industries-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Industrial_Welding_Safety.mp4" }
+  },
+
+
+  // safety
+
+          21: {
+    id: 21,
+    title: "First Aid",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/First_Aid.mp4" },
+    description: "This course equips learners with essential skills to provide immediate care in medical emergencies, helping to preserve life, prevent further injury, and promote recovery. Students will gain practical knowledge of first aid techniques applicable in workplaces, homes, and public settings.",
+    skills: ["Ability to assess an emergency situation and respond appropriately.", "Competence in performing life-saving first aid procedures such as CPR, wound care, and fracture management.", "Knowledge of using first aid equipment and providing care until professional medical help arrives."],
+    learning: ["Principles of first aid and emergency assessment.", "Treatment of wounds, burns, fractures, and shock.", "Infection control, safety, and proper first aid documentation."],
+    topics: ["Occupational health and safety (OHS)", "Health and safety in workplaces"],
+    lessons: ["Introduction to First Aid and Emergency Assessment", "CPR, AED Use, and Resuscitation Techniques", "Treatment of Wounds, Burns, Fractures, and Shock", "Handling Choking, Breathing Emergencies, and Documentation"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/First_Aid.mp4" }
+  },
+
+            22: {
+    id: 22,
+    title: "Basic Firefighting",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Basic_Firefighting.mp4" },
+    description: "This course provides learners with foundational knowledge and practical skills to respond to fire emergencies in workplaces, industrial sites, and maritime environments. Students will learn fire behavior, prevention techniques, and the safe use of firefighting equipment to protect lives and property.",
+    skills: ["Ability to identify fire hazards and implement preventive measures.", "Competence in using firefighting equipment such as extinguishers, hoses, and fire blankets.", "Knowledge of emergency response procedures and evacuation protocols."],
+    learning: ["Principles of fire: types, causes, and behavior.", "Fire prevention strategies and workplace safety.", "Fire prevention strategies and workplace safety."],
+    topics: ["Occupational health and safety (OHS)", "Hazard detection and risk management", "Emergency preparedness and response", "Animal Health"],
+    lessons: ["Introduction to Fire Safety and Fire Behavior", "Fire Prevention Strategies and Workplace Hazards", "Firefighting Equipment and Extinguishing Techniques", "Emergency Response, Evacuation, and Post-Incident Procedures"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/basic-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/basic-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Basic_Firefighting.mp4" }
+  },
+
+  
+            23: {
+    id: 23,
+    title: "OHS (Occupational Safety)",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Occupational_Health_and_Safety.mp4" },
+    description: "This course provides learners with essential knowledge and skills to maintain safe and healthy workplaces across various industries. It covers legal requirements, hazard prevention, and safety management practices, helping students create a culture of safety and compliance in their work environments.",
+    skills: ["Ability to identify workplace hazards and implement preventive measures.", "Competence in applying occupational safety regulations and standards.", "Knowledge of emergency response procedures, safety audits, and incident reporting."],
+    learning: ["Fundamentals of occupational health and safety (OHS).", "Hazard recognition and risk assessment techniques.", "Hazard recognition and risk assessment techniques."],
+    topics: ["Risk management", "Regulatory compliance (OSHA, ISO standards)"],
+    lessons: ["Introduction to Occupational Health & Safety", "Hazard Identification and Risk Assessment", "Safety Management Systems and Compliance", "Emergency Procedures, PPE, and Incident Reporting"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/ohs-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/ohs-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Occupational_Health_and_Safety.mp4" }
+  },
+
+              24: {
+    id: 24,
+    title: "Hazard Detection",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Hazard_Detection.mp4" },
+    description: "This course equips learners with the skills and knowledge to identify, assess, and respond to hazards in industrial, construction, and operational environments. Students will develop a proactive approach to safety, learning how to prevent accidents and maintain a secure workplace.",
+    skills: ["Ability to identify potential hazards in the workplace and operational areas.", "Competence in using detection tools, monitoring systems, and inspection techniques.", "Knowledge of hazard reporting, mitigation, and preventive safety measures."],
+    learning: ["Types of workplace hazards: physical, chemical, biological, and ergonomic.", "Risk assessment and prioritization of hazards.", "Communication and reporting procedures for identified risks."],
+    topics: ["Occupational health and safety (OHS)", "Industrial risk management", "Emergency preparedness and response"],
+    lessons: ["Introduction to Workplace Hazards", "Hazard Detection Methods and Tools", "Risk Assessment and Prioritization", "Reporting, Mitigation, and Preventive Measures"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/har-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/hae-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Hazard_Detection.mp4" }
+  },
+
+               25: {
+    id: 25,
+    title: "Risk Management",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Risk_Management.mp4" },
+    description: "This course introduces learners to the principles and practices of risk management in industrial, business, and operational environments. Students will learn how to identify, assess, and mitigate risks to ensure safety, compliance, and business continuity.",
+    skills: ["Ability to identify and assess potential risks in workplace and operational settings.", "Competence in developing and implementing risk mitigation strategies.", "Knowledge of monitoring, reporting, and continuous improvement of risk controls."],
+    learning: ["Fundamentals of risk management and its importance in operations.", "Risk identification, categorization, and assessment techniques.", "Monitoring, reviewing, and updating risk management processes.", "Regulatory compliance, safety standards, and documentation practices."],
+    topics: ["Occupational health and safety (OHS)", "Incident reporting and analysis"],
+    lessons: ["Introduction to Risk Management Principles", "Risk Identification, Assessment, and Analysis", "Mitigation Strategies and Preventive Controls", "Monitoring, Review, and Continuous Improvement"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/risk-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/risk-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Risk_Management.mp4" }
+  },
+
+  // manufatcuring
+
+                 26: {
+    id: 26,
+    title: "Assembly Line Processes",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Assembly_Line_Processes.mp4" },
+    description: "This course introduces learners to the organization, operation, and optimization of assembly lines in manufacturing and production environments. Students will learn how to efficiently coordinate tasks, manage workflow, and maintain quality while ensuring safety on the production floor.",
+    skills: ["Ability to understand and follow assembly line workflows and procedures.", "Competence in task coordination, time management, and efficiency monitoring.", "Knowledge of quality control, safety practices, and equipment handling in assembly operations."],
+    learning: ["Principles of assembly line design and operation.", "Use of conveyors, automated systems, and hand tools."],
+    topics: ["Lean manufacturing and production optimization", "Industrial engineering and workflow analysis", "Material handling and equipment operation"],
+    lessons: ["Introduction to Assembly Line Concepts & Workflow", "Workstation Setup, Task Standardization, and Ergonomics", "Monitoring, Efficiency, and Bottleneck Management", "Safety Practices, Quality Control, and Equipment Handling"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/ass-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/ass-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Assembly_Line_Processes.mp4" }
+  },
+
+                 27: {
+    id: 27,
+    title: "Manufacturing Systems",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Manufacturing_Systems.mp4" },
+    description: "This course provides an in-depth introduction to modern manufacturing systems and production processes. Learners will explore how raw materials are transformed into finished products, how production lines are organized, and how efficiency, quality, and safety are maintained in industrial environments.",
+    skills: ["Understanding of various manufacturing processes and system workflows.", "Ability to operate, monitor, and optimize production systems.", "Knowledge of quality standards, safety protocols, and production documentation."],
+    learning: ["Overview of manufacturing types: batch, continuous, lean, and automated systems.", "Production planning, scheduling, and workflow optimization.", "Integration of machines, conveyors, and material handling systems."],
+    topics: ["Industrial engineering fundamentals", "Process optimization and automation", "Equipment operation and maintenance"],
+    lessons: ["Introduction to Manufacturing Systems & Processes", "Production Workflows and Equipment Integration", "Monitoring, Optimization, and Safety in Manufacturing", "Quality Assurance and System Documentation"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/ma-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/ma-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Manufacturing_Systems.mp4" }
+  },
+
+                   28: {
+    id: 28,
+    title: "Quality Control & Inspection",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Quality_Control__Inspection.mp4" },
+    description: "This course introduces learners to the principles and practices of quality control (QC) and inspection in industrial, manufacturing, and production environments. Students will learn how to monitor processes, identify defects, apply standards, and ensure products meet quality and safety requirements.",
+    skills: ["Ability to perform inspections and identify non-conformities in products or processes.", "Competence in applying quality standards, documentation, and reporting procedures.", "Knowledge of measuring tools, testing methods, and process improvement techniques."],
+    learning: ["Fundamentals of quality control and assurance.", "Inspection techniques, tools, and equipment.", "Process monitoring, sampling methods, and statistical quality control."],
+    topics: ["Production process management", "Measurement and metrology"],
+    lessons: ["Introduction to Quality Control & Inspection Principles", "Tools and Techniques for Effective Inspection", "Process Monitoring, Sampling, and Defect Identification", "Reporting, Documentation, and Corrective Actions"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/qual-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/qual-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Quality_Control__Inspection.mp4" }
+  },
+
+                     29: {
+    id: 29,
+    title: "Machine Operation Basics",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Machine_Operation_Basics.mp4" },
+    description: "This course introduces learners to the essential principles of operating industrial machines safely and efficiently. Students will understand machine components, operating procedures, hazard controls, and basic troubleshooting. The course is ideal for new machine operators in manufacturing, engineering, or processing environments.",
+    skills: ["Ability to operate basic industrial machines following standard procedures.", "Understanding of machine components, controls, and operating sequences.", "Skills in identifying operational faults, applying safety measures, and performing simple adjustments."],
+    learning: ["Types of industrial machines and their functions.", "Machine controls, settings, and operating parameters.", "Safe operation techniques and correct use of PPE."],
+    topics: ["Occupational health and safety", "Mechanical systems fundamentals"],
+    lessons: ["Introduction to Machine Types & Operator Responsibilities", "Machine Components, Controls & Operating Procedures", "Safe Operation Techniques & Routine Checks", "Basic Troubleshooting and Performance Monitoring"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/mac-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/mac-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Machine_Operation_Basics.mp4" }
+  },
+
+  
+                     30: {
+    id: 30,
+    title: "Plant Equipment Handling",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Plant_Equipment_Handling.mp4" },
+    description: "This course provides essential training on safely operating, handling, and managing equipment commonly found in industrial plants, processing facilities, and manufacturing environments. Learners will gain practical skills in equipment identification, correct usage techniques, safety procedures, and routine checks to ensure smooth and safe plant operations.",
+    skills: ["Safe handling and operation of common plant equipment and tools.", "Ability to conduct inspections, routine checks, and basic maintenance.", "Hazard identification and application of equipment safety protocols."],
+    learning: ["Correct operating procedures and handling techniques.", "Start-up, shutdown, and lockout/tagout principles."],
+    topics: ["Industrial safety and OHS", "Equipment monitoring"],
+    lessons: ["Introduction to Plant Equipment & Safety Requirements", "Handling and Operating Common Mechanical Equipment", "Routine Checks, Inspections, and Basic Maintenance", "Fault Identification, Shutdown Procedures & Incident Prevention"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/pl-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/pl-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Plant_Equipment_Handling.mp4" }
+  },
+
+
+                     31: {
+    id: 31,
+    title: "Drilling Support Skills",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Drilling_Support_Skills.mp4" },
+    description: "This course provides foundational training for individuals supporting drilling operations in mining, oil & gas, and geotechnical environments. Learners will gain essential knowledge of drilling equipment, site preparation, core handling, safety procedures, and operational support tasks that keep drilling projects running smoothly and safely.",
+    skills: ["Ability to assist with drilling setup, equipment preparation, and site organization.", "Competence in core/sample handling, logging support, and material management.", "Knowledge of drilling safety protocols, hazard identification, and emergency responses."],
+    learning: ["Overview of drilling methods", "Roles and responsibilities of drilling assistants and support crew."],
+    topics: ["Occupational health and safety"],
+    lessons: ["Introduction to Drilling Operations & Support Roles", "Drilling Equipment, Tools, and Setup Procedures", "Core Handling, Sample Recovery & Site Organization", "Safety Practices, Hazard Control & Emergency Procedures"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/drill-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/drill-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Drilling_Support_Skills.mp4" }
+  },
+
+                     32: {
+    id: 32,
+    title: "Drilling Support Skills",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Drilling_Support_Skills.mp4" },
+    description: "Prepare for disaster situations effectively",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Drilling_Support_Skills.mp4" }
+  },
+  
+                     33: {
+    id: 33,
+    title: "Conveyor Belt Systems",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Conveyor_Belt_Systems.mp4" },
+    description: "This course introduces learners to the operation, components, and safety requirements of conveyor belt systems used across manufacturing, mining, logistics, and processing plants. Students will gain practical understanding of how conveyors move materials, how to monitor system performance, and how to address common operational issues.",
+    skills: ["Operation and monitoring of various conveyor belt systems.", "Identification of faults such as misalignment, belt slippage, and material blockages.", "Ability to apply safety procedures and perform basic maintenance tasks."],
+    learning: ["Types of conveyor systems (belt, roller, chain, trough, incline).", "Safe start-up, shutdown, and emergency stop procedures.", "Material handling techniques and load distribution.", "Preventive maintenance, cleaning, tension checks, and troubleshooting."],
+    topics: ["Material handling equipment", "Industrial safety", "Equipment inspection and maintenance"],
+    lessons: ["Overview of Conveyor Belt Systems & Applications", "Components, Motors, and Belt Mechanics", "Operating Procedures, Safety, and Material Handling", "Fault Detection, Troubleshooting, and Routine Maintenance"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/con-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/con-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Conveyor_Belt_Systems.mp4" }
+  },
+  
+                       34: {
+    id: 34,
+    title: "Water Purification Systems",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Water_Purification_Systems.mp4" },
+    description: "This course provides a comprehensive overview of modern water purification systems used in residential, industrial, and municipal settings. Learners will explore treatment technologies, system components, and operational procedures that ensure water is safe, clean, and compliant with health standards. The course blends theory with practical understanding of how purification systems are monitored, maintained, and optimized.",
+    skills: ["Understanding of water treatment technologies and purification stages.", "Ability to operate and monitor purification equipment and system performance.", "Skills in identifying faults, performing basic maintenance, and ensuring water quality compliance."],
+    learning: ["Overview of water contaminants and treatment objectives.", "Mechanical, chemical, and biological purification methods.", "System layout, flow paths, pumps, sensors, and control panels."],
+    topics: ["Water quality standards and testing", "Environmental engineering basics", "Wastewater and recycling systems"],
+    lessons: ["Introduction to Water Purification & Treatment Systems", "Mechanical & Chemical Filtration Methods Explained", "System Monitoring, Quality Testing & Routine Maintenance", "Disinfection Technologies: Chlorination, UV, and Ozone"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/pur-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/pur-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Water_Purification_Systems.mp4" }
+  },
+
+                         35: {
+    id: 35,
+    title: "Pump & Valve Operation",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Pump__Valve_Operation.mp4" },
+    description: "This course provides foundational knowledge and hands-on understanding of how pumps and valves function within industrial, water treatment, and mechanical systems. Learners will explore different pump types, valve mechanisms, operating procedures, and safety measures needed to keep fluid systems running reliably and efficiently.",
+    skills: ["Operation and monitoring of various pumps", "Proper use, adjustment, and control of valves within fluid systems.", "Ability to recognize abnormalities, perform basic maintenance, and ensure safe operation."],
+    learning: ["Principles of fluid flow, pressure, and system behavior.", "Common pump types, components, startup, shutdown, and troubleshooting.", "Safe opening/closing procedures, isolation techniques, and line checks.", "Preventive maintenance and identifying leaks, vibrations, and flow issues."],
+    topics: ["Industrial safety procedures", "Piping systems and fittings"],
+    lessons: ["Introduction to Pumps, Valves, and Fluid Systems", "Pump Types, Components, and Operating Procedures", "Valve Types, Functions, and Safe Handling", "Troubleshooting, Maintenance, and System Safety Checks"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/pump-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/pump-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Pump__Valve_Operation.mp4" }
+  },
+
+                        36: {
+    id: 36,
+    title: "Plant Monitoring",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Plant_Monitoring.mp4" },
+    description: "This course introduces learners to the essential practices of monitoring industrial plants, systems, and equipment to ensure safe, efficient, and uninterrupted operations. Students will learn how to observe system performance, identify abnormal conditions, interpret readings, and respond to operational issues in real-time.",
+    skills: ["Ability to monitor mechanical, electrical, and process equipment using gauges, sensors, and digital systems.", "Competence in identifying abnormal conditions, system faults, and performance deviations.", "Knowledge of reporting, logging, and communicating operational data for decision-making."],
+    learning: ["Principles of plant operations and process flows.", "Routine inspections, safety checks, and condition monitoring practices.", "Alarm systems, emergency indicators, and first-response procedures."],
+    topics: ["Industrial safety", "Equipment troubleshooting"],
+    lessons: ["Introduction to Plant Operations & Monitoring Roles", "Instrumentation: Gauges, Sensors, and Control Panels", "Routine Checks, Inspections, and Fault Identification", "Alarm Response, Reporting, and Logbook Best Practices"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/plant-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/plant-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Plant_Monitoring.mp4" }
+  },
+
+                          37: {
+    id: 37,
+    title: "Chlorination & Filtration Stages",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Chlorination__Filtration_Stages.mp4" },
+    description: "This course provides a clear and practical understanding of water purification through chlorination and multi-stage filtration. Students will explore how contaminants are removed, how disinfectants work, and how these processes ensure safe, potable water for communities, industries, and households.",
+    skills: ["Ability to explain and apply chlorination principles for safe water disinfection.", "Knowledge of filtration stages", "Competence in monitoring water quality, chemical dosing, and system maintenance."],
+    learning: ["Overview of water treatment processes and pathogen removal.", "Chlorination methods, chlorine types, dosing calculations, and contact time.", "Multi-stage filtration systems and how each stage removes specific contaminants."],
+    topics: ["Water quality management", "Environmental health and safety", "Wastewater treatment fundamentals"],
+    lessons: ["Introduction to Water Treatment & Disinfection", "Chlorination Principles, Dosing, and Safety", "Filtration Stages: From Coagulation to Final Polishing", "Monitoring, Testing, and Troubleshooting Water Quality"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/fil-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/fil-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Chlorination__Filtration_Stages.mp4" }
+  },
+
+                           38: {
+    id: 38,
+    title: "Shipboard Safety",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Shipboard_Safety.mp4" },
+    description: "This course equips learners with the essential knowledge and practical procedures required to maintain safety aboard vessels. From emergency preparedness to hazard prevention, students will understand how to create and maintain a safe working environment on ships while complying with international maritime safety standards.",
+    skills: ["Ability to identify shipboard hazards and implement safety controls.", "Proficiency in emergency response, evacuation, and survival procedures.", "Knowledge of international maritime safety regulations and safe work practices."],
+    learning: ["Safety culture and risk management on ships.", "Use of personal protective equipment (PPE) and safe work procedures.", "Fire safety, emergency alarms, muster duties, and evacuation routes."],
+    topics: ["Occupational safety at sea", "First aid", "Emergency and crisis management"],
+    lessons: ["Introduction to Shipboard Safety and Risk Awareness", "Safety Equipment, PPE, and Safe Work Practices", "Fire Prevention, Alarms, and Emergency Procedures", "Evacuation, Lifesaving Appliances, and Safety Drills"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Shipboard_Safety.mp4" }
+  },
+
+  
+                           39: {
+    id: 39,
+    title: "Cargo Handling",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Cargo_Handling.mp4" },
+    description: "This course provides a practical and comprehensive introduction to cargo handling operations across maritime, logistics, and warehousing environments. Learners will explore different cargo types, handling equipment, safety procedures, and efficient workflow techniques used to move goods safely and effectively through the supply chain.",
+    skills: ["Safe and efficient handling of various cargo types", "Proper use of lifting, loading, and material-handling equipment.", "Cargo documentation, labeling, and compliance procedures."],
+    learning: ["Principles of cargo categorization and handling requirements.", "Use of equipment such as forklifts, pallet jacks, conveyors, and container spreaders.", "Loading, securing, stowing, and unloading techniques.", "Safety rules, hazard identification, and regulatory standards in cargo operations."],
+    topics: ["Port and terminal operations", "Supply chain and logistics management", "Warehousing and inventory control", "Occupational health and safety (OHS)"],
+    lessons: ["Introduction to Cargo Types and Handling Methods", "Equipment Used in Modern Cargo Operations", "Loading, Securing, and Stowage Procedures", "Safety Protocols and Regulatory Compliance"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/cargo-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/cargo-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Cargo_Handling.mp4" }
+  },
+
+                           40: {
+    id: 40,
+    title: "Marine Engine Room Basics",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Marine_Engine_Room_Basics.mp4" },
+    description: "This course introduces learners to the fundamental concepts and operations of a ship’s engine room. Students will gain practical knowledge of marine engines, auxiliary systems, and safety procedures, preparing them to work effectively in a maritime engineering environment.",
+    skills: ["Understanding of marine engine components and their functions.", "Basic operation and monitoring of engine room systems.", "Implementation of safety and emergency protocols in engine rooms."],
+    learning: ["Engine types, layout, and operational principles.", "Fuel, lubrication, and cooling systems.", "Auxiliary systems such as pumps, compressors, and generators.", "Engine room safety, alarms, and emergency procedures."],
+    topics: ["Marine safety regulations", "Maritime engineering fundamentals"],
+    lessons: ["Introduction to Marine Engine Rooms", "Marine Engines: Components and Functions", "Auxiliary Systems and Engine Monitoring", "Safety, Emergencies, and Basic Troubleshooting"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/maritime-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/maritime-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Marine_Engine_Room_Basics.mp4" }
+  },
+
+                             41: {
+    id: 41,
+    title: "Port Crane Operations",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Port_Crane_Operations.mp4" },
+    description: "This course provides comprehensive training on the safe and efficient operation of port cranes used for loading and unloading cargo at shipping terminals. Students will gain hands-on experience with different types of cranes, understand safety protocols, and learn how to optimize cargo handling for efficiency and precision.",
+    skills: ["Safe operation of various port cranes", "Cargo handling and load management techniques.", "Basic maintenance and troubleshooting of crane equipment."],
+    learning: ["Crane components, controls, and functionality.", "Load balancing, rigging, and securing cargo.", "Safety procedures and regulatory compliance in port environments.", "Communication protocols with ground and ship personnel."],
+    topics: ["Maritime operations", "Heavy machinery safety"],
+    lessons: ["Introduction to Port Cranes and Types", "Crane Controls and Safe Operation Techniques", "Load Handling, Rigging, and Cargo Management", "Maintenance, Troubleshooting, and Emergency Procedures"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/portcrane-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/portcrane-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Port_Crane_Operations.mp4" }
+  },
+
+   42: {
+    id: 42,
+    title: "Energy Storage & Distribution",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Energy_Storage__Distribution.mp4" },
+    description: "This course provides learners with foundational knowledge of energy storage systems and distribution networks used in industrial, commercial, and residential applications. Students will understand how energy is stored, managed, and safely distributed, including both conventional and renewable energy systems.",
+    skills: ["Ability to understand and operate energy storage systems (batteries, capacitors, thermal storage).", "Competence in monitoring, controlling, and distributing electrical energy safely.", "Knowledge of energy system maintenance, fault detection, and safety protocols."],
+    learning: ["Overview of energy storage technologies and principles.", "Battery management, renewable energy integration, and load management.", "Fault detection, system monitoring, and performance optimization."],
+    topics: ["Renewable energy systems (solar, wind, hydro)", "Industrial safety and OHS"],
+    lessons: ["Introduction to Energy Storage and Distribution Systems", "Components of Distribution Networks and Energy Storage", "Safety, Monitoring, and Maintenance Procedures", "Fault Detection, System Optimization, and Renewable Integration"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/ener-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/ener-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Energy_Storage__Distribution.mp4" }
+  },
+
+   43: {
+    id: 43,
+    title: "Solar PV Installation",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Solar_PV_Installation.mp4" },
+    description: "This course provides learners with practical knowledge and skills to design, install, and maintain solar photovoltaic (PV) systems. Students will learn how to work safely with solar panels, inverters, batteries, and related components while ensuring efficient energy generation for residential, commercial, or industrial applications.",
+    skills: ["Ability to design and install solar PV systems safely and efficiently.", "Competence in wiring, mounting, and connecting PV panels, inverters, and storage systems.", "Knowledge of system testing, maintenance, and troubleshooting for optimal performance."],
+    learning: ["Overview of solar energy principles and PV system components.", "Site assessment, system sizing, and layout planning.", "System testing, commissioning, maintenance, and fault troubleshooting."],
+    topics: ["Renewable energy systems", "Energy storage and distribution", "Occupational health and safety (OHS)"],
+    lessons: ["Introduction to Solar Energy and PV Systems", "Site Assessment, System Design, and Component Selection", "Installation Procedures: Panels, Inverters, and Connections", "System Testing, Maintenance, and Troubleshooting"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/solar-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/solar-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Solar_PV_Installation.mp4" }
+  },
+
+     44: {
+    id: 44,
+    title: "Industrial Electrical Systems",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Industrial_Electrical_Systems.mp4" },
+    description: "This course provides learners with knowledge and practical skills to design, operate, and maintain electrical systems in industrial environments. Students will learn about high-voltage systems, control circuits, and safety protocols critical for reliable and safe industrial operations.",
+    skills: ["Ability to understand, install, and maintain industrial electrical systems.", "Competence in operating and troubleshooting control circuits, motors, and switchgear.", "Knowledge of safety standards, lockout/tagout procedures, and fault prevention."],
+    learning: ["Overview of industrial electrical systems, including power distribution and control circuits.", "Wiring, panel design, and control schematics.", "Safety procedures, PPE usage, and compliance with electrical standards."],
+    topics: ["Wiring & circuit systems", "Energy storage and distribution", "Industrial safety and OHS", "Motor control and automation"],
+    lessons: ["Introduction to Industrial Electrical Systems", "Power Distribution, Control Circuits, and Components", "Installation, Maintenance, and Troubleshooting", "Safety Procedures, Compliance, and Fault Prevention"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/in-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/in-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Industrial_Electrical_Systems.mp4" }
+  },
+
+   45: {
+    id: 45,
+    title: "Hydraulics & Pneumatics",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Hydraulics.mp4" },
+    description: "This course provides learners with fundamental knowledge of hydraulic and pneumatic systems used in industrial machinery, manufacturing, and mechanical applications. Students will learn how these systems operate, how to maintain them, and how to troubleshoot common issues while adhering to safety standards.",
+    skills: ["Ability to understand and operate hydraulic and pneumatic systems safely.", "Competence in identifying system components, monitoring performance, and troubleshooting faults.", "Knowledge of maintenance procedures, system safety, and proper use of tools and equipment."],
+    learning: ["Principles of hydraulics and pneumatics, including fluid mechanics and pressure control.", "Safety protocols, hazard identification, and preventive maintenance.", "Troubleshooting techniques for leaks, pressure drops, and operational failures."],
+    topics: ["Industrial machinery operation", "Mechanical maintenance and safety", "Control systems and automation"],
+    lessons: ["Introduction to Hydraulics and Pneumatics Principles", "Components, Circuits, and System Design", "Operation, Monitoring, and Preventive Maintenance", "Troubleshooting, Safety Procedures, and Fault Diagnosis"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/hy-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/hy-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Hydraulics.mp4" }
+  },
+
+  46: {
+    id: 46,
+    title: "Fitting & Machining",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/Fitting__Machining.mp4" },
+    description: "This course provides learners with foundational skills in metal fitting and machining, essential for manufacturing, maintenance, and mechanical engineering applications. Students will learn how to measure, shape, assemble, and finish metal components with precision using hand tools and machine tools.",
+    skills: ["Competence in measuring, marking, and fitting metal components accurately.", "Ability to operate basic machining tools such as lathes, mills, and drills.", "Knowledge of safety practices, tool handling, and quality assurance in fitting and machining tasks."],
+    learning: ["Principles of metal fitting and machining processes.", "Assembly, alignment, and finishing of metal components.", "Safety protocols, PPE usage, and quality inspection of machined parts."],
+    topics: ["Fabrication techniques", "Welding fundamentals", "Industrial safety and OHS", "Animal Health"],
+    lessons: ["Introduction to Fitting & Machining and Tools", "Measuring, Marking, and Metal Preparation", "Machine Operations: Lathe, Mill, Drill, and Grinder", "Assembly, Finishing, Safety, and Quality Inspection"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/Fitting__Machining.mp4" }
+  },
+
+  4: {
+    id: 4,
+    title: "Carpentry & Roofwork",
+    level: "Beginner",
+    time: "2 days",
+    flex: "Flexible",
+    caps: "Curriculum Aligned",
+    mainMedia: { type: "video", src: "videos/RoofBracingandReinforcement.mp4" },
+    description: "Learn Carpentry & Roofwork in 3D/Ar..",
+    skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+    learning: ["Plant basics"],
+    topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+    lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+    resources: [
+      { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+      { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+    ],
+    demoMedia: { type:"video", src:"videos/RoofBracingandReinforcement.mp4" }
+  },
+
+
+};
+
+    // --- GET QUERY PARAM ---
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    // --- LOAD COURSE DYNAMICALLY ---
+    function loadCourse(courseName){
+      const data = coursesData[courseName];
+      if(!data) return;
+      document.getElementById('courseTitle').textContent = data.title;
+      document.getElementById('headerDescription').textContent = data.header;
+      document.getElementById('statLevel').textContent = data.level;
+      document.getElementById('statTime').textContent = data.time;
+      document.getElementById('statFlex').textContent = data.flex;
+      document.getElementById('statCaps').textContent = data.caps;
+      // Description toggle
+      const courseDescText = document.getElementById('courseDescription');
+      const toggleBtn = document.getElementById('toggleDesc');
+      const fullDesc = data.description;
+      const shortDesc = fullDesc.slice(0,150) + "...";
+      let isExpanded = false;
+      courseDescText.textContent = shortDesc;
+      toggleBtn.onclick = () => {
+        if(!isExpanded){ courseDescText.textContent = fullDesc; toggleBtn.textContent="Show less"; }
+        else { courseDescText.textContent = shortDesc; toggleBtn.textContent="Read more"; }
+        isExpanded = !isExpanded;
+      };
+
+
+      //Header
+
+         // Description toggle
+      const DescText = document.getElementById('headerDescription');
+      const toggleBtns = document.getElementById('toggleDesc');
+      const descText = data.header;
+      const shortDescs = fullDesc.slice(0,150) + "...";
+      let isExpandeds = false;
+      courseDescText.textContent = shortDesc;
+      toggleBtn.onclick = () => {
+        if(!isExpanded){ courseDescText.textContent = fullDesc; toggleBtn.textContent="Show less"; }
+        else { courseDescText.textContent = shortDesc; toggleBtn.textContent="Read more"; }
+        isExpanded = !isExpanded;
+      };
+      // Skills
+      const skillsContainer = document.getElementById('skillsItems');
+      skillsContainer.innerHTML = data.skills.map(s => `<div class="learning-item"><span class="checkmark">✔</span>${s}</div>`).join('');
+      // Topics
+      const topicsContainer = document.getElementById('exploreTopics');
+      topicsContainer.innerHTML = data.topics.map(t => `<div style="padding:12px 16px;background:#eef2ff;border-radius:8px;cursor:pointer;">${t}</div>`).join('');
+      // Lessons
+      const lessonsContainer = document.getElementById('lessonsList');
+      lessonsContainer.innerHTML = data.lessons.map(l => `<div class="lesson-item">${l}</div>`).join('');
+      // Resources
+      const resourcesContainer = document.getElementById('resourcesContainer');
+      resourcesContainer.innerHTML = data.resources.map(r => `
+        <div class="resource-card">
+          <i class="${r.icon} resource-icon"></i>
+          <div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div>
+        </div>
+      `).join('');
+      // Demo video
+      const demoWrap = document.getElementById('demoVideoWrap');
+      demoWrap.innerHTML = `<video class="media" src="${data.demoMedia}" autoplay muted loop controls></video>`;
+    }
+    // --- INIT ---
+    const selectedCourse = decodeURIComponent(getQueryParam('course') || 'Animal Production');
+    loadCourse(selectedCourse);
+    // Load nav + footer
+    fetch('navigation.html').then(r => r.text()).then(d => { document.getElementById('navigation-placeholder').innerHTML = d; });
+    fetch('footer.html').then(r => r.text()).then(d => { document.getElementById('footer-placeholder').innerHTML = d; });
+  </script>
+
+  <script>
+    // --- LOCK CHECK ---
+function checkLock(course) {
+  const overlay = document.getElementById("courseLockedOverlay");
+
+  if (!overlay) return;
+
+  if (course.locked) {
+    overlay.classList.add("active");
+  } else {
+    overlay.classList.remove("active");
+  }
+}
+
+  </script>
+  <script>
+      function createMainMediaHTML(media) {
+    if (!media) return '';
+    if (media.type === 'video') 
+      return `<video class="media" src="${media.src}" autoplay loop muted playsinline></video>`;
+    if (media.type === 'image') 
+      return `<img class="media" src="${media.src || 'https://via.placeholder.com/800x450?text=Course+Preview'}" alt="Course image">`;
+    return '';
+  }
+  function createDemoMediaHTML(media) {
+    if (!media) return '';
+    if (media.type === 'video') 
+      return `<video class="media" src="${media.src}" autoplay loop muted playsinline></video>`;
+    return '';
+  }
+  function createMainMediaHTML(media) {
+  if (!media) return '';
+  if (media.type === 'video') {
+    return `
+      <video class="main-media" controls autoplay muted playsinline style="width:100%; border-radius:20px;">
+        <source src="${media.src}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    `;
+  }
+  if (media.type === 'image') {
+    return `
+      <img class="main-media" src="${media.src}" style="width:100%; border-radius:20px;">
+    `;
+  }
+  return '';
+}
+  // --- Render resources dynamically ---
+  function renderResources(course) {
+    // const container = document.querySelector('.resources-container');
+    const container= document.getElementById("resourcesContainer");
+    if (!container) return;
+    container.innerHTML = ''; // Clear old content
+    if (!course.resources || course.resources.length === 0) {
+      container.innerHTML = `<p style="text-align:center; color:#777;">No resources available for this course.</p>`;
+      return;
+    }
+    container.innerHTML = course.resources.map(resource => `
+      <a href="${resource.file}" target="_blank" class="resource-card">
+        <div class="resource-icon"><i class="${resource.icon}"></i></div>
+        <div class="resource-text">
+          <h3>${resource.title}</h3>
+          <p>View and download the ${resource.title.toLowerCase()} (PDF)</p>
+        </div>
+      </a>
+    `).join('');
+  }
+  // --- Main course rendering logic ---
+  (function renderCourse() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = urlParams.get('id');
+    const course = coursesData[courseId];
+    if (!course) {
+      console.error("Course not found!");
+      return;
+    }
+    document.getElementById('courseTitle').textContent = course.title;
+    document.getElementById('headerDescription').textContent=course.header;
+    document.getElementById('courseDescription').textContent = course.description;
+     document.getElementById('headerDescription').textContent = course.header;
+    document.getElementById('statLevel').textContent = course.level;
+    document.getElementById('statTime').textContent = course.time;
+    const main = document.getElementById('mainMediaWrap');
+    main.innerHTML = createMainMediaHTML(course.mainMedia);
+    const lessons = document.getElementById('lessonsList');
+    lessons.innerHTML = course.lessons.map((l, i) =>
+      `<div class="lesson-item"><strong>Lesson ${i + 1}:</strong> ${l}</div>`
+    ).join('');
+    document.getElementById('learningItems').innerHTML =
+      course.learning.map(l =>
+        `<div class="learning-item"><span class="checkmark">✓</span><span>${l}</span></div>`
+      ).join('');
+    document.getElementById('skillsItems').innerHTML =
+      course.skills.map(s =>
+        `<div class="learning-item"><span class="checkmark">✓</span><span>${s}</span></div>`
+      ).join('');
+    const demo = document.getElementById('demoSection');
+    const demoWrap = document.getElementById('demoVideoWrap');
+    if (course.mainMedia.type === 'video') {
+      demo.style.display = '';
+      demoWrap.innerHTML = createDemoMediaHTML(course.demoMedia || course.mainMedia);
+    } else {
+      demo.style.display = 'none';
+    }
+
+    checkLock(course);
+    // ✅ Render resources dynamically
+    renderResources(course);
+  })();
+    function createDemoMediaHTML(media) {
+    if (!media) return '';
+    if (media.type === 'video') 
+      return `<video class="media" src="${media.src}" autoplay loop muted playsinline></video>`;
+    return '';
+  }
+  // --- Render resources dynamically ---
+  function renderResources(course) {
+    const container = document.querySelector('.resources-container');
+    if (!container) return;
+    container.innerHTML = ''; // Clear old content
+    if (!course.resources || course.resources.length === 0) {
+      container.innerHTML = `<p style="text-align:center; color:#777;">No resources available for this course.</p>`;
+      return;
+    }
+    container.innerHTML = course.resources.map(resource => `
+      <a href="${resource.file}" target="_blank" class="resource-card">
+        <div class="resource-icon"><i class="${resource.icon}"></i></div>
+        <div class="resource-text">
+          <h3>${resource.title}</h3>
+          <p>View and download the ${resource.title.toLowerCase()} (PDF)</p>
+        </div>
+      </a>
+    `).join('');
+  }
+  // --- Main course rendering logic ---
+  (function renderCourse() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = urlParams.get('id');
+    const course = coursesData[courseId];
+    if (!course) {
+      console.error("Course not found!");
+      return;
+    }
+    document.getElementById('courseTitle').textContent = course.title;
+    document.getElementById('headerDescription').textContent = course.header;
+    document.getElementById('courseDescription').textContent = course.description;
+    document.getElementById('statLevel').textContent = course.level;
+    document.getElementById('statTime').textContent = course.time;
+    const main = document.getElementById('mainMediaWrap');
+    main.innerHTML = createMainMediaHTML(course.mainMedia);
+    const lessons = document.getElementById('lessonsList');
+    lessons.innerHTML = course.lessons.map((l, i) =>
+      `<div class="lesson-item"><strong>Lesson ${i + 1}:</strong> ${l}</div>`
+    ).join('');
+    document.getElementById('learningItems').innerHTML =
+      course.learning.map(l =>
+        `<div class="learning-item"><span class="checkmark">✓</span><span>${l}</span></div>`
+      ).join('');
+    document.getElementById('skillsItems').innerHTML =
+      course.skills.map(s =>
+        `<div class="learning-item"><span class="checkmark">✓</span><span>${s}</span></div>`
+      ).join('');
+
+function applyLockState() {
+  const overlay = document.getElementById("courseLockedOverlay");
+  const btn = document.getElementById("enrollBtn");
+
+  if (course.locked) {
+    overlay.classList.add("active");
+    btn.disabled = true;
+    btn.onclick = () => alert("This course is locked.");
+  } else {
+    overlay.classList.remove("active");
+    btn.disabled = false;
+    btn.onclick = () => window.location.href = "persona.html";
+  }
+}
+
+applyLockState();
+
+    const demo = document.getElementById('demoSection');
+    const demoWrap = document.getElementById('demoVideoWrap');
+    if (course.mainMedia.type === 'video') {
+      demo.style.display = '';
+      demoWrap.innerHTML = createDemoMediaHTML(course.demoMedia || course.mainMedia);
+    } else {
+      demo.style.display = 'none';
+    }
+    // ✅ Render resources dynamically
+    renderResources(course);
+  })();
+  function renderResources(course) {
+    const container = document.getElementById("resourcesContainer");
+    if (!container) return;
+    if (!course.resources || course.resources.length === 0) {
+        container.innerHTML = "<p>No resources available.</p>";
+        return;
+    }
+    container.innerHTML = course.resources.map(r =>
+        `<a class="resource-item" href="${r.url}" target="_blank">${r.title}</a>`
+    ).join('');
+}
+  </script> 
+
+
+
+
+<script>
+  /* ===============================
+   HELPERS
+================================*/
+function createMainMediaHTML(media) {
+  if (!media) return "";
+  if (media.type === "video") {
+    return `
+      <video class="media" src="${media.src}" autoplay loop muted playsinline></video>
+    `;
+  }
+  if (media.type === "image") {
+    return `
+      <img class="media" src="${media.src}" alt="Course image">
+    `;
+  }
+}
+
+function createDemoMediaHTML(media) {
+  if (!media || media.type !== "video") return "";
+  return `<video class="media" src="${media.src}" autoplay loop muted playsinline controls></video>`;
+}
+
+function renderResources(course) {
+  const container = document.getElementById("resourcesContainer");
+  if (!container) return;
+
+  if (!course.resources || course.resources.length === 0) {
+    container.innerHTML = `<p style="text-align:center;color:#777;">No resources available.</p>`;
+    return;
+  }
+
+  container.innerHTML = course.resources.map(r => `
+    <a href="${r.file}" target="_blank" class="resource-card">
+      <i class="${r.icon} resource-icon"></i>
+      <div class="resource-text">
+        <h3>${r.title}</h3>
+        <p>${r.desc}</p>
+      </div>
+    </a>
+  `).join("");
+}
+
+
+/* ===============================
+   MAIN RENDER FUNCTION
+================================*/
+function loadCourse() {
+
+  const courseId = new URLSearchParams(window.location.search).get("id");
+  const course = coursesData[courseId];
+
+  if (!course) {
+    console.error("❌ ERROR: Course not found.");
+    return;
+  }
+
+  // --- Header Info ---
+  document.getElementById("courseTitle").textContent = course.title;
+  document.getElementById("headerDescription").textContent = course.header;
+  document.getElementById("statLevel").textContent = course.level;
+  document.getElementById("statTime").textContent = course.time;
+  document.getElementById("statFlex").textContent = course.flex;
+  document.getElementById("statCaps").textContent = course.caps;
+
+  // --- Description Toggle ---
+  const descEl = document.getElementById("courseDescription");
+   const descText = document.getElementById("headerDescription");
+  const toggleBtn = document.getElementById("toggleDesc");
+  const fullDesc = course.description;
+  const shortDesc = fullDesc.slice(0, 150) + "...";
+  let isOpen = false;
+
+  descEl.textContent = shortDesc;
+  toggleBtn.onclick = () => {
+    isOpen = !isOpen;
+    descEl.textContent = isOpen ? fullDesc : shortDesc;
+    toggleBtn.textContent = isOpen ? "Show less" : "Read more";
+  };
+
+    descText.textContent = shortDesc;
+  toggleBtn.onclick = () => {
+    isOpen = !isOpen;
+    descText.textContent = isOpen ? fullDesc : shortDesc;
+    toggleBtn.textContent = isOpen ? "Show less" : "Read more";
+  };
+
+  // --- Skills ---
+  document.getElementById("skillsItems").innerHTML = 
+    course.skills.map(s => `<div class="learning-item"><span class="checkmark">✔</span>${s}</div>`).join("");
+
+  // --- Topics ---
+  document.getElementById("exploreTopics").innerHTML =
+    course.topics.map(t => `<div style="padding:12px 16px;background:#eef2ff;border-radius:8px;">${t}</div>`).join("");
+
+  // --- Lessons ---
+  document.getElementById("lessonsList").innerHTML =
+    course.lessons.map((l, i) =>
+      `<div class="lesson-item"><strong>Lesson ${i + 1}:</strong> ${l}</div>`
+    ).join("");
+
+  // --- Main Media ---
+  document.getElementById("mainMediaWrap").innerHTML = createMainMediaHTML(course.mainMedia);
+
+  // --- Demo Section ---
+  const demoWrap = document.getElementById("demoVideoWrap");
+  demoWrap.innerHTML = createDemoMediaHTML(course.demoMedia);
+
+  // --- Resources ---
+  renderResources(course);
+}
+
+
+/* ===============================
+   START
+================================*/
+loadCourse();
+
+// Load Nav + Footer
+fetch("navigation.html").then(r => r.text()).then(html => {
+  document.getElementById("navigation-placeholder").innerHTML = html;
+});
+fetch("footer.html").then(r => r.text()).then(html => {
+  document.getElementById("footer-placeholder").innerHTML = html;
+});
+</script>
+</script>
+
+<div id="courseLockedOverlay">Locked</div>
+
+<script>
+  const course = coursesData[courseId];
+// ---- Course Lock System ----
+if (course.locked) {
+  document.getElementById("courseLockedOverlay").classList.add("active");
+}
+
+const startBtn = document.getElementById("startExperience");
+const lockOverlay = document.getElementById("lockOverlay");
+
+if (startBtn) {
+  startBtn.addEventListener("click", function(e) {
+    e.preventDefault(); // stop navigation if it has a link
+    lockOverlay.classList.add("active");
+  });
+}
+
+
+</script>
+
+<script>
+const btn = document.getElementById("startExperience");
+const overlay = document.getElementById("lockOverlay");
+
+if (btn && overlay) {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+      window.location.href = "persona.html";
+    }, 1200);
+  });
+}
+</script>
+
+</body>
+</html>

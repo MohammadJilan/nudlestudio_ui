@@ -1,0 +1,123 @@
+     .carousel-section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.carousel-title {
+  color: #0a8f47;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.carousel-subtitle {
+  font-size: 16px;
+  color: #444;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-btn {
+  position: absolute;
+  z-index: 10;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  font-size: 34px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow-btn:hover {
+  transform: scale(1.1);
+}
+
+.arrow-btn.left {
+  left: 40px;
+}
+
+.arrow-btn.right {
+  right: 40px;
+}
+
+.carousel {
+  position: relative;
+  width: 900px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+}
+
+.card {
+  position: absolute;
+  width: 320px;
+  height: 200px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+  transition: all 0.8s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card h4 {
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+/* Button */
+.explore-container {
+  margin-top: 40px;
+}
+
+.explore-btn {
+  display: inline-block;
+  padding: 18px 40px;
+  background: #3164f4;
+  color: white;
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.explore-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .carousel-wrapper {
+    height: 300px;
+  }
+  .card {
+    width: 240px;
+    height: 170px;
+  }
+  .arrow-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 28px;
+  }
+}

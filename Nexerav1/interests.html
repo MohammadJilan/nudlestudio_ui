@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nudlebot - Choose Interests</title>
+  <link rel="stylesheet" href="auth.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .interests-box {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #444;
+      font-size: 15px;
+    }
+
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .interest-btn {
+      padding: 14px;
+      background: #f8f9fb;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 15px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .interest-btn:hover {
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    }
+
+    .interest-btn.selected {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+      transform: scale(1.03);
+    }
+
+    select {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    select:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    @media (max-width: 600px) {
+      .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .interests-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Hidden by default */
+    #student-level-group {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="interests-box">
+    <h2>Personalize Your Experience</h2>
+    <p>Select your interests and role to tailor your learning journey.</p>
+
+    <form id="interests-form">
+      <!-- Interests -->
+      <div class="form-group">
+        <label>Select your interests:</label>
+        <div class="interests-grid">
+          <div class="interest-btn">Agriculture</div>
+          <div class="interest-btn">Construction</div>
+          <div class="interest-btn">Education</div>
+          <div class="interest-btn">Freight & Logistics</div>
+          <div class="interest-btn">Insurance</div>
+          <div class="interest-btn">Technology</div>
+          <div class="interest-btn">Entrepreneurship</div>
+          <div class="interest-btn">Design</div>
+          <div class="interest-btn">Science</div>
+        </div>
+      </div>
+
+      <!-- Role -->
+      <div class="form-group">
+        <label for="role">Select your role:</label>
+        <select id="role" required>
+          <option value="">-- Select your role --</option>
+          <option value="student">Student</option>
+          <option value="educator">Educator</option>
+          <option value="professional">General Professional</option> <!-- Updated to 'General Professional' -->
+        </select>
+      </div>
+
+      <!-- Student Level (hidden until student is selected) -->
+      <div class="form-group" id="student-level-group">
+        <label for="student-level">Select your level:</label>
+        <select id="student-level">
+          <option value="">-- Select your level --</option>
+          <option value="primary-school">Primary School (gr. 1-7)</option>
+          <option value="high-school">High School (gr. 8-12)</option>
+          <option value="higher-education">Higher Education</option>
+        </select>
+
+        <!-- Higher Education Sub-levels (hidden until Higher Education is selected) -->
+        <div id="higher-education-group" style="display: none;">
+          <label for="higher-education-level">Select your higher education type:</label>
+          <select id="higher-education-level">
+            <option value="">-- Select type --</option>
+            <option value="college">College</option>
+            <option value="tvet">TVET</option>
+            <option value="university">University</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    const interestButtons = document.querySelectorAll(".interest-btn");
+    const form = document.getElementById("interests-form");
+    const roleSelect = document.getElementById("role");
+    const studentLevelGroup = document.getElementById("student-level-group");
+    const higherEducationGroup = document.getElementById("higher-education-group");
+    const studentLevelSelect = document.getElementById("student-level");
+
+    // Toggle interest selection
+    interestButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("selected");
+      });
+    });
+
+    // Show student level dropdown when "Student" or "Educator" is selected
+    roleSelect.addEventListener("change", () => {
+      if (roleSelect.value === "student" || roleSelect.value === "educator") {
+        studentLevelGroup.style.display = "block";
+      } else {
+        studentLevelGroup.style.display = "none";
+        higherEducationGroup.style.display = "none"; // Reset higher education dropdown
+      }
+    });
+
+    // Show higher education options when "Higher Education" is selected
+    studentLevelSelect.addEventListener("change", () => {
+      if (studentLevelSelect.value === "higher-education") {
+        higherEducationGroup.style.display = "block";
+      } else {
+        higherEducationGroup.style.display = "none";
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const selectedInterests = Array.from(document.querySelectorAll(".interest-btn.selected"))
+        .map(btn => btn.textContent.trim());
+      const role = document.getElementById("role").value;
+      const studentLevel = document.getElementById("student-level").value;
+      const higherEducationLevel = document.getElementById("higher-education-level").value;
+
+      const userPrefs = { interests: selectedInterests, role, studentLevel, higherEducationLevel };
+      localStorage.setItem("nudleUser", JSON.stringify(userPrefs));
+
+      // Redirect based on role
+      if (role === "educator") {
+        window.location.href = "learnpage3.html";
+      } else {
+        window.location.href = "dashboard3.html";
+      }
+    });
+  </script>
+</body>
+</html>

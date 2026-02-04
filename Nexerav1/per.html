@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+          body {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: #0f172a;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.6;
+        position: relative;
+      }
+          .section-wrappers {
+        /* background-color: white; */
+        padding: 28px;
+        border-radius: 14px;
+        border: 1px solid #F0F1F8;
+        max-width: 1260px;
+        margin: 60px auto;
+        box-sizing: border-box;
+        position: relative;
+          box-shadow: var(--shadow-lg);
+      }
+      .section-inner {
+        display: flex;
+        gap: 0;
+        align-items: stretch;
+      }
+      .left-card {
+        flex: 0 0 46%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        padding: 40px;
+      }
+      .left-card h3 {
+        margin: 0;
+        font-size: 48px;
+        line-height: 1.1;
+        font-weight: 800;
+        color: #0B0B0B;
+        letter-spacing: -0.02em;
+      }
+      .left-card p {
+        margin: 18px 0 0;
+        font-size: 18px;
+        color: #6B7482;
+        font-weight: 500;
+      }
+      .right-card {
+        flex: 0 0 54%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+      }
+      .image-panel {
+   
+        width: 60%;
+        max-width: 840px;
+        padding: 18px;
+        border-radius: 14px;
+        /* box-sizing: border-box; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .image-panel img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        max-width: 500px;
+      }
+      .section-wrappers::before {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: calc(100% - 56px);
+        background: #E1E3EE;
+        left: 50%;
+        top: 28px;
+        transform: translateX(-50%);
+        border-radius: 1px;
+        pointer-events: none;
+      }
+      .mobile-container {
+        display: none;
+      }
+      .image-container {
+        display: none;
+      }
+      .ai-control-wrapper {
+        width: 100%;
+        padding: 80px 20px;
+        text-align: center;
+      }
+      .ai-control-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .ai-control-title {
+        font-size: 32px;
+        font-weight: 800;
+        background: black;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+      .ai-control-subtitle {
+        font-size: 16px;
+        color: black !important;
+        font-weight: 600;
+        margin-bottom: 60px;
+        letter-spacing: 0.02em;
+      }
+      .ai-control-cards-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .ai-control-card {
+        flex: 0 1 240px;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        text-align: center;
+        border-radius: 0;
+        position: relative;
+      }
+      .ai-control-icon-box {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 20px;
+        /* border: 2.5px solid #4B5FE0; */
+        /* border: 2.5px solid black; */
+        border: 2.5px solid #a6a0a0;
+        background: linear-gradient(135deg, rgba(75, 95, 224, 0.08), rgba(75, 95, 224, 0.04));
+      }
+     .ai-control-icon-inner {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border-radius: 0;
+      }
+      .ai-control-icon-inner img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        border-radius: 0;
+      }
+      .ai-control-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+      .ai-control-card-text {
+        font-size: 14px;
+        color: #475569;
+        line-height: 1.6;
+        margin-top: 8px;
+      }
+      .ai-control-arrow {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 30px;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+        margin-bottom: 100px;
+        color: black;
+      }
+      .ai-control-arrow:hover {
+        opacity: 1;
+      }
+      .ai-control-arrow svg {
+        width: 100%;
+        height: 100%;
+        color: #000 !important;
+      }
+      .avatar-showcase {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        margin-top: 40px;
+        padding: 48px;
+        border-radius: 24px;
+      }
+      .avatar-image {
+        width: 280px;
+        border-radius: 20px;
+        transition: transform 0.4s ease;
+      }
+      .avatar-image:hover {
+        transform: scale(1.05);
+      }
+      .avatar-content {
+        flex: 1;
+      }
+      .avatar-content h2 {
+        margin-bottom: 16px;
+      }
+      .avatar-content p {
+        margin-bottom: 24px;
+      }
+
+      h3{
+        text-align: center;
+        font-size: 38px;
+      }
+
+      .right-card {
+  flex: 0 0 54%;
+  display: flex;
+  padding: 0;               /* remove padding so image can touch edges */
+}
+
+.image-panel {
+  width: 100%;              /* fill full width */
+  height: 100%;             /* fill full height */
+  padding: 0;               /* remove padding */
+  border-radius: 0;         /* optional: remove rounding */
+  display: flex;
+}
+
+.image-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* fills entire space */
+  display: block;
+  border-radius: 0;
+}
+
+    </style>
+</head>
+<body>
+    <!-- EASY TO DEPLOY SECTION - DESKTOP VERSION -->
+     <h3>Animal Herding Basics — Livestock Assistant</h3>
+<section class="section-wrappers">
+  <!-- Desktop layout (side-by-side with divider) -->
+  <div class="section-inner">
+
+    <!-- Left Content -->
+    <div class="left-card">
+      
+
+      <h4>What You Will Learn</h4>
+      <ul>
+        <li>Identify livestock species</li>
+        <li>Spot common health issues</li>
+        <li>Handle animals safely</li>
+        <li>Maintain basic farm records</li>
+      </ul>
+
+      <h4>To Pass This Simulation You Must</h4>
+      <ul>
+        <li>Correctly classify all animals</li>
+        <li>Identify at least three health risks</li>
+        <li>Follow safety steps without errors</li>
+        <li>Demonstrate practical livestock management skills</li>
+        <li>Use proper safe handling techniques</li>
+        <li>Apply observation and analysis</li>
+      </ul>
+
+      <h4>Scenario Background</h4>
+      <p>
+        You are assisting Farmer Thabo during the morning livestock checks.
+        Your task is to inspect, classify, and record animal conditions with accuracy and care.
+      </p>
+    </div>
+
+    <!-- Right Image Panel -->
+    <div class="right-card">
+      <div class="image-panel">
+        <img src="images/farmerthabo.gif" alt="Cross-platform devices">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

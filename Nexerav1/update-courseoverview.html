@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Overview - NEXERA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root{
+      --primary-blue: #5B7CE6;
+      --dark-blue: #4A63C1;
+      --light-blue: #EEF2FF;
+      --accent-yellow: #FFC107;
+      --accent-orange: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      --text-dark: #1a1a2e;
+      --text-gray: #666666;
+      --border-color: #E5E5E5;
+      --white: #FFFFFF;
+    }
+    body{
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: #F9FAFB;
+    }
+
+    
+    .back-nav { background: var(--white); border-bottom: 1px solid var(--border-color); padding: 16px 5px; }
+    .back-nav .container { max-width: 1000px; margin: 0 auto; }
+    .back-btn { background: transparent; border: none; color: var(--primary-blue); font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .back-btn:hover { color: var(--dark-blue); }
+    .course-header { background: var(--white); padding: 40px 20px; }
+    .header-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .header-left, .header-right { display: flex; flex-direction: column; }
+    .header-content h1 { font-size: 38px; font-weight: 700; margin-bottom: 20px; color: var(--text-dark); line-height: 1.3; }
+    .course-description-text { font-size: 15px; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; }
+    .stats-share { display: flex; flex-direction: column; gap: 16px; }
+    .course-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .stat { text-align: center; padding: 16px; background: var(--light-blue); border-radius: 8px; }
+    .stat-value { font-size: 18px; font-weight: 700; color: var(--text-dark); display:flex; align-items:center; justify-content:center; gap:4px; margin-bottom:4px; }
+    .star { color: var(--accent-yellow); }
+    .stat-label { font-size: 13px; color: var(--text-gray); }
+    .btn-enroll, .btn-certificate {
+      width: 100%;
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn-enroll{
+        margin-top: 0;
+        padding: 18px;
+    }
+    .btn-enroll:hover, .btn-certificate:hover { background: var(--dark-blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(91, 124, 230, 0.3); }
+    .linkedin-icon { width:24px; height:24px; background:var(--primary-blue); color:#fff; display:flex; justify-content:center; align-items:center; border-radius:50%; font-size:14px; border: 2px solid white; padding: 10px; }
+    .video-section { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; height: 300px; margin-bottom: 16px; }
+    .video-wrapper { position: relative; aspect-ratio: 16 / 9; width:100%; border-radius: 12px; overflow: hidden; }
+    .video-wrapper .media { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-placeholder { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; background: linear-gradient(135deg, var(--primary-blue) 0%, #7B93E8 100%); }
+    .video-placeholder i { font-size: 64px; margin-bottom: 16px; opacity: 0.9; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 5px 20px; background-color:white !important;}
+    .content-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; margin-bottom:40px; }
+    .content-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 24px; color: var(--text-dark); }
+    .learning-items { display: grid; gap: 16px; }
+    .learning-item { display:flex; gap:12px; font-size:15px; color:var(--text-dark); line-height:1.6; }
+    .checkmark { color: var(--primary-blue); font-weight:700; flex-shrink:0; font-size:18px; }
+    #toggleDesc { margin-top:10px; background:none; border:none; color:var(--primary-blue); cursor:pointer; font-weight:600; }
+    .lessons-section { margin-bottom:40px; }
+    .lessons-list { display:grid; gap:12px; }
+    .lesson-item { background:#fff; border:1px solid var(--border-color); padding:12px 16px; border-radius:8px; }
+    .resources-section { margin-top: 60px; margin-bottom: 50px; }
+    .resources-section .section-title { font-size: 24px; font-weight: 700; margin-bottom: 25px; text-align: center; color: var(--text-dark); }
+    .resources-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .resource-card { background: #ffffff; border: 1px solid #ddd; border-radius: 12px; display: flex; align-items: center; gap: 16px; padding: 20px 28px; flex: 1 1 320px; min-width: 280px; max-width: 480px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    .resource-card:hover { box-shadow: 0 6px 18px rgba(91, 124, 230, 0.15); transform: translateY(-4px); }
+    .resource-icon { font-size: 32px; color: var(--primary-blue); }
+    .resource-text h3 { font-size: 18px; color: #333; margin: 0 0 6px; }
+    .resource-text p { font-size: 14px; color: #555; margin: 0; }
+    .demo-video { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+    .demo-video h3 { padding: 24px 32px; font-size:22px; font-weight:600; color:var(--text-dark); border-bottom:1px solid var(--border-color); }
+    .demo-video .video-wrapper { aspect-ratio: 16 / 9; position:relative; overflow:hidden; }
+    .demo-video .media { width:100%; height:100%; object-fit:cover; }
+    .cta-section { background: var(--white); border: 1px solid var(--border-color); border-radius:12px; padding:48px; text-align:center; margin-bottom:40px; }
+    .cta-section h2 { font-size:28px; font-weight:700; margin-bottom:16px; color:var(--text-dark); }
+    .cta-section p { font-size:16px; color:var(--text-gray); margin-bottom:28px; max-width:600px; margin-left:auto; margin-right:auto; }
+    .btn-register { padding:16px 48px; background: var(--accent-orange); border:none; border-radius:8px; color:var(--text-dark); font-size:18px; font-weight:600; cursor:pointer; box-shadow:0 4px 20px rgba(255,193,7,0.4); }
+    .btn-register:hover { transform: translateY(-2px); box-shadow:0 6px 24px rgba(255,193,7,0.5); }
+    @media (max-width:968px) {
+      .header-container { grid-template-columns: 1fr; }
+      .header-content h1 { font-size: 28px; }
+    }
+
+    #courseLockedOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #courseLockedOverlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @media (max-width: 480px) {
+      .demo-video{
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="navigation-placeholder"></div>
+
+  <div class="back-nav">
+    <div class="container">
+      <button class="back-btn" onclick="window.history.back()">← Back to courses</button>
+    </div>
+  </div>
+
+  <div id="courseLockedOverlay">LOCKED</div>
+
+  <section class="course-header">
+    <div class="header-container">
+      <div class="header-left stats-share header-content">
+        <h1 id="courseTitle">Course</h1>
+        <p class="course-description-text" id="headerDescription">Description Text</p>
+         <button class="btn-certificate">
+          <div class="linkedin-icon"><i class="fab fa-linkedin-in"></i></div>
+          Shareable Certificate
+        </button>
+        <div class="course-stats" id="courseStats">
+          <div class="stat">
+            <div class="stat-value" id="statLevel">Beginner</div>
+            <div class="stat-label">Recommended level</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statTime">2 days</div>
+            <div class="stat-label">To complete</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statFlex">Flexible</div>
+            <div class="stat-label">Schedule</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statCaps">Curriculum Aligned</div>
+            <div class="stat-label">CAPS</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="header-right">
+        <div class="video-section">
+          <div class="video-wrapper" id="mainMediaWrap">
+            <div class="video-placeholder" id="mainVideoPlaceholder">
+              <i class="fas fa-play-circle"></i>
+              <span>Course Introduction Video</span>
+            </div>
+          </div>
+        </div>
+        <a href="auth.html" style="text-decoration:none;">
+          <button class="btn-enroll" id="enrollBtn">Start Experience</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="content-card course-description">
+      <h2>What you will Learn</h2>
+      <p id="courseDescription"></p>
+      <button id="toggleDesc">Read more</button>
+    </div>
+
+    <div class="content-card">
+      <h2>Skills you will gain</h2>
+      <div class="learning-items" id="skillsItems"></div>
+    </div>
+
+    <div class="lessons-section container">
+      <h2>Lessons</h2>
+      <div class="lessons-list" id="lessonsList"></div>
+    </div>
+
+    <div class="content-card">
+      <h2>Explore Topics</h2>
+      <div id="exploreTopics" style="display:flex; flex-wrap:wrap; gap:16px;"></div>
+    </div>
+
+    <section class="resources-section">
+      <h2 class="section-title">Resources</h2>
+      <div class="resources-container" id="resourcesContainer"></div>
+    </section>
+
+    <div class="demo-video" id="demoSection">
+      <h3>See a Demo of Interactive AR Experience</h3>
+      <div class="video-wrapper" id="demoVideoWrap"></div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Would you like to create experiences like this?</h2>
+      <p>Join thousands of educators transforming their teaching with immersive 3D/AR technology. No coding skills required!</p>
+      <button class="btn-register" onclick="window.location.href='index.html'">Register for free</button>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    const coursesData = {
+      1: {
+        id: 1,
+        locked: true,
+        title: "Animal Production",
+        level: "Beginner",
+        time: "2 days",
+        flex: "Flexible",
+        caps: "Curriculum Aligned",
+        mainMedia: { type: "video", src: "videos/GoatSkeleton.mp4" },
+        description: "Learn the essentials of livestock care, feeding, and farm safety.",
+        skills: ["Animal Husbandry", "Feeding Schedules", "Livestock Management", "Farm Safety"],
+        learning: ["Animal husbandry basics"],
+        topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+        lessons: ["Introduction to Livestock", "Feeding Basics", "Animal Health Checks", "Safety Protocols"],
+        resources: [
+          { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+          { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+        ],
+        demoMedia: { type:"video", src:"videos/GoatSkeleton.mp4" }
+      },
+      2: {
+        id: 2,
+        locked: false,
+        title: "Plant Production",
+        level: "Beginner",
+        time: "2 days",
+        flex: "Flexible",
+        caps: "Curriculum Aligned",
+        mainMedia: { type: "video", src: "videos/PlantReproduction.mp4" },
+        description: "Learn the essentials of plant reproduction.",
+        skills: ["Plant basics", "Feeding and nutrition of plants", "Health of Plants"],
+        learning: ["Plant basics"],
+        topics: ["Cattle Care", "Goat Management", "Sheep Husbandry", "Animal Health"],
+        lessons: ["Lesson 1", "Lesson 2", "lesson 3", "lesson 4"],
+        resources: [
+          { title:"Lesson Plan", icon:"fas fa-book", desc:"Download the lesson plan", file: "./resources/animal-lesson-plan.pdf" },
+          { title:"Teaching Plan", icon:"fas fa-book-reader", desc:"Download the teaching plan", file: "./resources/animal-teaching-plan.pdf" }
+        ],
+        demoMedia: { type:"video", src:"videos/PlantReproduction.mp4" }
+      }
+    };
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function createMainMediaHTML(media) {
+      if (!media) return '';
+      if (media.type === 'video') {
+        return `<video class="media" src="${media.src}" autoplay loop muted playsinline></video>`;
+      }
+      if (media.type === 'image') {
+        return `<img class="media" src="${media.src}" alt="Course image">`;
+      }
+      return '';
+    }
+
+    function createDemoMediaHTML(media) {
+      if (!media || media.type !== "video") return "";
+      return `<video class="media" src="${media.src}" autoplay loop muted playsinline controls></video>`;
+    }
+
+    function renderResources(course) {
+      const container = document.getElementById("resourcesContainer");
+      if (!container) return;
+
+      if (!course.resources || course.resources.length === 0) {
+        container.innerHTML = `<p style="text-align:center;color:#777;">No resources available.</p>`;
+        return;
+      }
+
+      container.innerHTML = course.resources.map(r => `
+        <a href="${r.file}" target="_blank" class="resource-card">
+          <i class="${r.icon} resource-icon"></i>
+          <div class="resource-text">
+            <h3>${r.title}</h3>
+            <p>${r.desc}</p>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    function loadCourse() {
+      const courseId = getQueryParam("id");
+      const course = coursesData[courseId];
+
+      if (!course) {
+        console.error("Course not found");
+        return;
+      }
+
+      document.getElementById("courseTitle").textContent = course.title;
+      document.getElementById("headerDescription").textContent = course.description;
+      document.getElementById("statLevel").textContent = course.level;
+      document.getElementById("statTime").textContent = course.time;
+      document.getElementById("statFlex").textContent = course.flex;
+      document.getElementById("statCaps").textContent = course.caps;
+
+      const descEl = document.getElementById("courseDescription");
+      const toggleBtn = document.getElementById("toggleDesc");
+      const fullDesc = course.description;
+      const shortDesc = fullDesc.slice(0, 150) + "...";
+      let isOpen = false;
+
+      descEl.textContent = shortDesc;
+      toggleBtn.onclick = () => {
+        isOpen = !isOpen;
+        descEl.textContent = isOpen ? fullDesc : shortDesc;
+        toggleBtn.textContent = isOpen ? "Show less" : "Read more";
+      };
+
+      document.getElementById("skillsItems").innerHTML =
+        course.skills.map(s => `<div class="learning-item"><span class="checkmark">✔</span>${s}</div>`).join("");
+
+      document.getElementById("exploreTopics").innerHTML =
+        course.topics.map(t => `<div style="padding:12px 16px;background:#eef2ff;border-radius:8px;">${t}</div>`).join("");
+
+      document.getElementById("lessonsList").innerHTML =
+        course.lessons.map((l, i) =>
+          `<div class="lesson-item"><strong>Lesson ${i + 1}:</strong> ${l}</div>`
+        ).join("");
+
+      document.getElementById("mainMediaWrap").innerHTML = createMainMediaHTML(course.mainMedia);
+
+      const demoWrap = document.getElementById("demoVideoWrap");
+      demoWrap.innerHTML = createDemoMediaHTML(course.demoMedia);
+
+      renderResources(course);
+
+      const overlay = document.getElementById("courseLockedOverlay");
+      const enrollBtn = document.getElementById("enrollBtn");
+
+      if (course.locked) {
+        overlay.classList.add("active");
+        enrollBtn.onclick = (e) => {
+          e.preventDefault();
+          alert("This course is currently locked.");
+        };
+      } else {
+        overlay.classList.remove("active");
+      }
+    }
+
+    loadCourse();
+
+    fetch("navigation.html").then(r => r.text()).then(html => {
+      document.getElementById("navigation-placeholder").innerHTML = html;
+    });
+    fetch("footer.html").then(r => r.text()).then(html => {
+      document.getElementById("footer-placeholder").innerHTML = html;
+    });
+  </script>
+</body>
+</html>

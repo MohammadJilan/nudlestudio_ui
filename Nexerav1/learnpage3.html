@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexera - Create</title>
+  <link rel="stylesheet" href="dashboard2.css">
+  <link rel="stylesheet" href="create-course.css">
+  <style>
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .project-card {
+      overflow: hidden;
+      /* box-shadow: 0 2px 6px rgba(0,0,0,0.08); */
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+     
+    }
+
+    .project-preview img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .projects-section {
+      margin-bottom: 3rem;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .project-preview img {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">Nexera</div>
+      </div>
+      <nav class="nav-menu">
+        <a href="learnpage3.html" class="nav-item active" data-page="create">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+          </svg>
+          <span class="nav-text">Create</span>
+        </a>
+        <a href="courses2.html" class="nav-item" data-page="courses">
+         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                    </svg>
+          <span class="nav-text">Courses</span>
+        </a>
+        <!-- <a href="library2.html" class="nav-item" data-page="lessons">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <span class="nav-text">Library</span> -->
+        </a>
+        <a href="profile3.html" class="nav-item" data-page="profile">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+          </svg>
+          <span class="nav-text">Profile</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="search-bar">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+            <path d="M19 19l-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" stroke-width="2"/>
+          </svg>
+          <input type="text" placeholder="Search templates...">
+        </div>
+        <div class="header-right">
+          <div class="notification-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+            <span class="notification-badge">3</span>
+          </div>
+          <div class="user-profile">
+            <div class="user-avatar"></div>
+            <span>Duren</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content create-content">
+
+        <!-- 🟩 Your Projects moved to the top -->
+        <section class="projects-section">
+          <div class="section-title-row">
+            <h2>Your Projects</h2>
+            <button class="create-folder-btn">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+              </svg>
+              Create folder
+            </button>
+          </div>
+
+          <div class="projects-grid" id="projects-grid">
+            <div class="project-card add-new" id="add-project-btn">
+              <div class="add-new-icon">
+                <svg width="48" height="48" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
+                </svg>
+              </div>
+              <p>Create new project</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-preview">
+                <img src="images/AnimalProduction.png" alt="My Course Presentation">
+              </div>
+              <div class="project-info">
+                <h3>Animal Production</h3>
+                <p>Edited 2 days ago</p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-preview">
+                <img src="images/PlantProduction.png" alt="DBE Exam">
+              </div>
+              <div class="project-info">
+                <h3>Plant Production</h3>
+                <p>Edited 1 week ago</p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-preview">
+                <img src="images/SoilScience.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Soil Science</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+                <div class="project-card">
+              <div class="project-preview">
+                <img src="images/ConcreateStructures.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Concreate Structures</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+                 <div class="project-card">
+              <div class="project-preview">
+                <img src="images/claimadmin.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Insurance Claim Administrator</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+                 <div class="project-card">
+              <div class="project-preview">
+                <img src="images/dronebasics.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Drone Basics</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+                 <div class="project-card">
+              <div class="project-preview">
+                <img src="images/earlychild.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Early Childhood Development</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+                 <div class="project-card">
+              <div class="project-preview">
+                <img src="images/frieght.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Freight Logistics</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+            
+                  <div class="project-card">
+              <div class="project-preview">
+                <img src="images/humansocial.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Human & Social Development</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+                  <div class="project-card">
+              <div class="project-preview">
+                <img src="images/Msonry.png" alt="Video Project">
+              </div>
+              <div class="project-info">
+                <h3>Masonry</h3>
+                <p>Edited 3 weeks ago</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 🟨 What will you create today (below projects) -->
+        <div class="create-header">
+          <div>
+            <h1>What will you create today?</h1>
+            <p class="subtitle">Start from a template or create your own project from scratch</p>
+          </div>
+        </div>
+
+        <!-- 🟦 Templates Section -->
+        <section class="templates-section">
+          <div class="section-title-row">
+            <h2>Templates</h2>
+            <a href="#" class="see-all-link">See all</a>
+          </div>
+
+          <div class="category-tabs">
+            <button class="category-tab active" data-category="all">All</button>
+            <button class="category-tab" data-category="presentation">Presentation</button>
+            <button class="category-tab" data-category="video">Video</button>
+            <button class="category-tab" data-category="print">Print</button>
+          </div>
+
+          <div class="templates-grid" id="templates-grid">
+            <!-- Template cards unchanged -->
+            <div class="template-card" data-category="presentation">
+              <div class="template-preview" style="background: linear-gradient(135deg, #ffa07a 0%, #ff6347 100%);">
+                <div class="template-overlay">
+                  <button class="use-template-btn">Use Template</button>
+                </div>
+              </div>
+              <div class="template-info">
+                <h3>Presentation</h3>
+                <p>Modern slides for your ideas</p>
+              </div>
+            </div>
+            <div class="template-card" data-category="social">
+              <div class="template-preview" style="background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);">
+                <div class="template-overlay">
+                  <button class="use-template-btn">Use Template</button>
+                </div>
+              </div>
+              <div class="template-info">
+                <h3>Video</h3>
+                <p>Eye-catching video content</p>
+              </div>
+            </div>
+            <div class="template-card" data-category="social">
+              <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                <div class="template-overlay">
+                  <button class="use-template-btn">Use Template</button>
+                </div>
+              </div>
+              <div class="template-info">
+                <h3>Demo's</h3>
+                <p>Stories that stand out</p>
+              </div>
+            </div>
+            <div class="template-card" data-category="video">
+              <div class="template-preview" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);">
+                <div class="template-overlay">
+                  <button class="use-template-btn">Use Template</button>
+                </div>
+              </div>
+              <div class="template-info">
+                <h3>Video</h3>
+                <p>Professional video projects</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="dashboard2.js"></script>
+  <script src="learnpage.js"></script>
+</body>
+</html>

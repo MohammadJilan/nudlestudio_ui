@@ -1,0 +1,296 @@
+
+         .ai-section-grids {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      .ai-cards {
+        padding: 40px 32px;
+        text-align: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        position: relative;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.05));
+      }
+
+      .ai-cards::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius);
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.05));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .ai-cards:hover::after {
+        opacity: 1;
+      }
+
+      .ai-cards:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .ai-icons {
+        width: 180px;
+        height: 80px;
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border-radius: 20px;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.08)); */
+        font-size: 96px !important;
+        color: var(--primary);
+        position: relative;
+        z-index: 1;
+      }
+
+      .ai-cards h3 {
+        margin-bottom: 12px;
+        font-size: 22px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .ai-cards p {
+        font-size: 15px;
+        color: var(--text-muted);
+        position: relative;
+        z-index: 1;
+      }
+
+       /* ---------- AI section: new layout (3 on top, 2 centered beneath) ---------- */
+      .ai-section-grids {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      /* Place first three cards across the top: columns 1-4, 5-8, 9-12 */
+      .ai-section-grids .ai-cards:nth-child(1) { grid-column: 1 / 5; }
+      .ai-section-grids .ai-cards:nth-child(2) { grid-column: 5 / 9; }
+      .ai-section-grids .ai-cards:nth-child(3) { grid-column: 9 / 13; }
+
+      /* Center the last two cards beneath the top row */
+      .ai-section-grids .ai-cards:nth-child(4) { grid-column: 3 / 7; }
+      .ai-section-grids .ai-cards:nth-child(5) { grid-column: 7 / 11; }
+
+      .ai-cards {
+        padding: 40px 32px;
+        text-align: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        position: relative;
+        /* background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(168, 85, 247, 0.03)); */
+        /* border-radius: 20px; */
+        overflow: visible;
+      }
+
+      .ai-cards::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius);
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.02), rgba(168, 85, 247, 0.02));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      .ai-cards:hover::after {
+        opacity: 1;
+      }
+
+      .ai-cards:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .ai-icons {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border-radius: 20px; */
+        /* background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(168, 85, 247, 0.04)); */
+        font-size: 36px;
+        color: var(--primary);
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+      }
+
+      .ai-cards h3 {
+        margin-bottom: 12px;
+        font-size: 22px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .ai-cards p {
+        font-size: 15px;
+        color: var(--text-muted);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ---------- Unique icon animations (pure CSS) ---------- */
+
+      /* default icon symbol styling */
+      .ai-icons i { display: inline-block; transform-origin: center; }
+
+      /* 1: AI Lesson Builder (magic wand) - soft pulses + spark ring */
+      .ai-section-grids .ai-cards:nth-child(1) .ai-icon i {
+        animation: wandWiggle 3.6s ease-in-out infinite;
+      }
+      .ai-section-grids .ai-cards:nth-child(1) .ai-icon::before {
+        content: '';
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: conic-gradient(from 0deg, rgba(59,130,246,0.06), transparent 30%, rgba(168,85,247,0.05));
+        z-index: 1;
+        animation: subtleSpin 10s linear infinite;
+        opacity: 0.9;
+        pointer-events: none;
+        filter: blur(6px);
+      }
+      @keyframes wandWiggle {
+        0% { transform: rotate(0deg) scale(1); }
+        25% { transform: rotate(6deg) scale(1.05); }
+        50% { transform: rotate(0deg) scale(1); }
+        75% { transform: rotate(-6deg) scale(1.03); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      /* 2: Scenario & Role-Play (masks) - masks swirl & soft orbit lines */
+      .ai-section-grids .ai-cards:nth-child(2) .ai-icon i {
+        animation: maskFloat 4s ease-in-out infinite;
+      }
+      .ai-section-grids .ai-cards:nth-child(2) .ai-icon::after {
+        content: '';
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px dashed rgba(255,255,255,0.03);
+        box-shadow: 0 0 30px rgba(59,130,246,0.02) inset;
+        animation: swirlOrbit 7s linear infinite;
+        pointer-events: none;
+      }
+      @keyframes maskFloat {
+        0% { transform: translateY(0) rotate(0deg) scale(1); }
+        50% { transform: translateY(-6px) rotate(6deg) scale(1.03); }
+        100% { transform: translateY(0) rotate(0deg) scale(1); }
+      }
+      @keyframes swirlOrbit {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+
+      /* 3: Assessment & Feedback (clipboard-check) - check ripple + subtle pulse */
+      .ai-section-grids .ai-cards:nth-child(3) .ai-icon i {
+        animation: checkPop 3s cubic-bezier(.25,.9,.3,1) infinite;
+      }
+      .ai-section-grids .ai-cards:nth-child(3) .ai-icon::before {
+        content: '';
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(59,130,246,0.06), transparent 40%);
+        opacity: 0.9;
+        animation: pulseRipple 2.6s ease-out infinite;
+        pointer-events: none;
+      }
+      @keyframes checkPop {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.08); }
+        60% { transform: scale(0.98); }
+        100% { transform: scale(1); }
+      }
+      @keyframes pulseRipple {
+        0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
+        70% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.15; }
+        100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+      }
+
+      /* 4: Classroom Analytics (chart-pie) - radial bars + rotating halo */
+      .ai-section-grids .ai-cards:nth-child(4) .ai-icons i {
+        animation: chartSpin 5s linear infinite;
+      }
+      .ai-section-grids .ai-cards:nth-child(4) .ai-icons::after {
+        content: '';
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.06), transparent 20%);
+        filter: blur(6px);
+        animation: slowRotate 12s linear infinite;
+      }
+      @keyframes chartSpin {
+        0% { transform: rotate(0deg) scale(1); }
+        100% { transform: rotate(360deg) scale(1); }
+      }
+      @keyframes slowRotate {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(-360deg); }
+      }
+
+      /* 5: Simulation Customization (sliders) - small vertical waves + shimmer */
+      .ai-section-grids .ai-cards:nth-child(5) .ai-icons i {
+        animation: sliderWave 3.8s ease-in-out infinite;
+      }
+      .ai-section-grids .ai-cards:nth-child(5) .ai-icons::before {
+        content: '';
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* background: conic-gradient(from 180deg, rgba(168,85,247,0.05), rgba(59,130,246,0.04)); */
+        filter: blur(8px);
+        animation: shimmer 6s linear infinite;
+      }
+      @keyframes sliderWave {
+        0% { transform: translateY(0) scale(1); }
+        25% { transform: translateY(-6px) scale(1.02); }
+        50% { transform: translateY(0) scale(1); }
+        75% { transform: translateY(6px) scale(0.99); }
+        100% { transform: translateY(0) scale(1); }
+      }
+      @keyframes subtleSpin { 0%{ transform: rotate(0deg); } 100%{ transform: rotate(360deg);} }
+      @keyframes shimmer { 0%{ opacity: .95; } 50%{ opacity:.6; } 100%{ opacity:.95; } }
+
+      /* allow reverse of animations when user scrolls up by toggling attribute on body */
+      body[data-scroll-dir="up"] .ai-section-grids .ai-icons i {
+        animation-direction: reverse;
+      }
+      body[data-scroll-dir="down"] .ai-section-grids .ai-icons i {
+        animation-direction: normal;
+      }
+
+   

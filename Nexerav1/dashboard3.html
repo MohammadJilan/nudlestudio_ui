@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexera - Dashboard</title>
+    <link rel="stylesheet" href="dashboard3.css">
+</head>
+<body>
+
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">Nexera</div>
+            <nav class="nav-menu">
+                <a href="dashboard3.html" class="nav-item active" data-page="dashboard">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                    </svg>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="create-course.html" class="nav-item" data-page="subjects">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                    </svg>
+                    <span class="nav-text">Create a Course</span>
+                </a>
+                <a href="courses.html" class="nav-item" data-page="courses">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                    </svg>
+                    <span class="nav-text">Courses</span>
+                </a>
+                <!-- <a href="library.html" class="nav-item" data-page="lessons">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <span class="nav-text">Library</span>
+                </a> -->
+                <a href="profile4.html" class="nav-item" data-page="profile">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                    </svg>
+                    <span class="nav-text">Profile</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="search-bar">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                        <path d="M19 19l-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" stroke-width="2"/>
+                    </svg>
+                    <input type="text" placeholder="Search courses, subjects...">
+                </div>
+                <div class="header-right">
+                    <div class="notification-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar" id="header-avatar"></div>
+                        <span id="header-username">Duren</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content" id="main-dashboard">
+                <div class="welcome-section">
+                    <div class="welcome-row">
+                        <div>
+                            <h1>Hi <span id="welcome-name">Duren</span>! Continue your simulation?</h1>
+                            <p class="subtitle">Track your learning progress and continue where you left off</p>
+                        </div>
+                        <button class="vr-btn" id="vr-button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.75 6h-1.5A2.25 2.25 0 0017 3.75h-2.5a.75.75 0 000 1.5H17a.75.75 0 01.75.75v1.25h-11.5V6A.75.75 0 017 5.25h2.5a.75.75 0 000-1.5H7A2.25 2.25 0 004.75 6h-1.5A2.25 2.25 0 001 8.25v9a2.25 2.25 0 002.25 2.25h3.5A2.25 2.25 0 009 17.25v-1.5h6v1.5a2.25 2.25 0 002.25 2.25h3.5A2.25 2.25 0 0023 17.25v-9A2.25 2.25 0 0020.75 6zM7.5 14.25a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zm9 0a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5z"/>
+                            </svg>
+                            VR Mode
+                        </button>
+                    </div>
+                </div>
+
+                <div class="main-grid">
+                    <div class="hero-card">
+                        <div class="hero-content">
+                            <div class="hero-meta">Subjects | Industries<br>Level - Grade 12</div>
+                            <h2 class="hero-title">Electronics</h2>
+                            <button class="continue-btn">Continue</button>
+                        </div>
+                        <div class="hero-image">
+                            <img src="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Electronics">
+                        </div>
+                    </div>
+
+                    <div class="stats-small-grid">
+                        <div class="stat-small">
+                            <div class="stat-icon-small" style="background: #e0e7ff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#6366f1">
+                                    <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="stat-value-small">0</div>
+                                <div class="stat-label-small">Courses Completed</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-small">
+                            <div class="stat-icon-small" style="background: #dbeafe;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#3b82f6">
+                                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="stat-value-small">0</div>
+                                <div class="stat-label-small">Challenges Completed</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-small">
+                            <div class="stat-icon-small" style="background: #fef3c7;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#f59e0b">
+                                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="stat-value-small">0</div>
+                                <div class="stat-label-small">Coupons</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-small">
+                            <div class="stat-icon-small" style="background: #fce7f3;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#ec4899">
+                                    <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="stat-value-small">3</div>
+                                <div class="stat-label-small">Collectables</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-row">
+                    <section class="section section-half">
+                        <div class="section-header">
+                            <h2>Challenges & Coupons</h2>
+                            <button class="view-all-btn" id="view-challenges-btn">View All</button>
+                        </div>
+                        <p class="section-subtitle">Complete 2 challenges to earn 1 coupon</p>
+                        <div class="challenges-progress">
+                            <div class="progress-info">
+                                <span>Challenges: <strong id="challenges-completed">0</strong>/10</span>
+                                <span>Coupons: <strong id="coupons-earned">0</strong></span>
+                            </div>
+                            <div class="progress-bar-large">
+                                <div class="progress-fill-large" id="challenge-progress" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section section-half">
+                        <div class="section-header">
+                            <h2>Collectables</h2>
+                            <button class="view-all-btn" id="view-collectables-btn">View All</button>
+                        </div>
+                        <p class="section-subtitle">Unlock characters and discover their powers</p>
+                        <div class="collectables-preview" id="collectables-preview">
+                            <div class="collectable-mini locked" data-id="1">
+                                <div class="collectable-mini-img">
+                                    <img src="images/thunderbolt.png" width="100" height="100" alt="Thunderbolt">
+                                </div>
+                                <div class="lock-overlay">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="collectable-mini locked" data-id="2">
+                                <div class="collectable-mini-img">
+                                    <img src="images/phoenixfire.png" width="100" height="100" alt="Phoenix Fire">
+                                </div>
+                                <div class="lock-overlay">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="collectable-mini locked" data-id="3">
+                                <div class="collectable-mini-img">
+                                    <img src="images/dragonice.png" width="100" height="100" alt="Dragon Ice">
+                                </div>
+                                <div class="lock-overlay">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="collectable-mini locked" data-id="4">
+                                <div class="collectable-mini-img">
+                                    <img src="images/nudlebotemoji.png" width="100" height="100" alt="Nudle Bot">
+                                </div>
+                                <div class="lock-overlay">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="section">
+                    <h2>Your Courses</h2>
+                    <div class="course-tabs">
+                        <button class="course-tab active" data-tab="in-progress">In Progress</button>
+                        <button class="course-tab" data-tab="upcoming">Upcoming</button>
+                        <button class="course-tab" data-tab="completed">Completed</button>
+                    </div>
+                    <div class="courses-grid" id="courses-grid"></div>
+                </section>
+            </div>
+
+            <div class="content" id="challenges-page" style="display: none;">
+                <div class="page-header">
+                    <button class="back-btn" id="back-from-challenges">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/>
+                        </svg>
+                        Back to Dashboard
+                    </button>
+                </div>
+
+                <div class="challenges-hero">
+                    <h1>WEEKLY CHALLENGE</h1>
+                    <div class="challenges-header-stats">
+                        <div class="header-stat">
+                            <span class="stat-label-header">COMPLETED:</span>
+                            <span class="stat-value-header" id="header-challenges-count">0/25</span>
+                        </div>
+                        <div class="header-stat gold">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="#fbbf24">
+                                <path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>
+                            </svg>
+                            <span id="header-coupons-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenges-milestone">
+                    <div class="milestone-item completed" data-num="5">
+                        <div class="milestone-icon">✓</div>
+                        <div class="milestone-number">5</div>
+                    </div>
+                    <div class="milestone-item completed" data-num="10">
+                        <div class="milestone-icon">✓</div>
+                        <div class="milestone-number">10</div>
+                    </div>
+                    <div class="milestone-item" data-num="15">
+                        <div class="milestone-icon">✓</div>
+                        <div class="milestone-number">15</div>
+                    </div>
+                    <div class="milestone-item" data-num="20">
+                        <div class="milestone-icon">✓</div>
+                        <div class="milestone-number">20</div>
+                    </div>
+                    <div class="milestone-item locked" data-num="25">
+                        <div class="milestone-icon">🔒</div>
+                        <div class="milestone-number">25</div>
+                    </div>
+                </div>
+
+                <div class="challenges-list" id="challenges-list"></div>
+            </div>
+
+            <div class="content" id="collectables-page" style="display: none;">
+                <div class="page-header">
+                    <button class="back-btn" id="back-from-collectables">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/>
+                        </svg>
+                        Back to Dashboard
+                    </button>
+                    <h1>Character Collectables</h1>
+                </div>
+
+                <div class="collectables-grid" id="collectables-grid"></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="vr-modal">
+        <div class="modal-content vr-modal-content">
+            <button class="modal-close" id="close-vr-modal">&times;</button>
+            <h2>Scan to Experience VR Learning</h2>
+            <div class="qr-code-container">
+                <img src="images/poster_qr_code.png" alt="VR QR Code" class="qr-code-image">
+            </div>
+            <p>Scan this QR code with your VR headset or mobile device</p>
+        </div>
+    </div>
+
+    <div class="modal" id="challenge-complete-modal">
+        <div class="modal-content challenge-complete-content">
+            <div class="points-animation">
+                <div class="points-burst">+<span id="points-earned">100</span></div>
+                <div class="success-icon">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="#10b981">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+            </div>
+            <h2>Challenge Complete!</h2>
+            <p id="challenge-complete-text">You've earned bonus points!</p>
+            <button class="btn-primary" id="close-challenge-modal">Continue</button>
+        </div>
+    </div>
+
+    <div class="modal" id="collectable-modal">
+        <div class="modal-content collectable-modal-content">
+            <button class="modal-close" id="close-collectable-modal">&times;</button>
+            <div class="collectable-detail">
+                <div class="collectable-image-large" id="collectable-image"></div>
+                <div class="collectable-info">
+                    <h2 id="collectable-name">Character Name</h2>
+                    <div class="rarity-badge" id="collectable-rarity">Legendary</div>
+                    <div class="collectable-stats">
+                        <h3>Powers</h3>
+                        <p id="collectable-powers"></p>
+                        <h3>Description</h3>
+                        <p id="collectable-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="dashboard3.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
